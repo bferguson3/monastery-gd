@@ -1,0 +1,819 @@
+[gd_scene load_steps=61 format=3 uid="uid://dymdvvhcxe8xr"]
+
+[ext_resource type="Texture2D" uid="uid://doj5q2hkomcyh" path="res://monk_hero-sheet.png" id="1_6qpie"]
+[ext_resource type="Script" path="res://HeroController.gd" id="1_vex14"]
+[ext_resource type="Texture2D" uid="uid://11chfeeku7j0" path="res://monk_elder-sheet2.png" id="2_4bjg3"]
+[ext_resource type="Texture2D" uid="uid://c08gxsydujddt" path="res://monk_hero-sheet2.png" id="2_hbhrc"]
+[ext_resource type="Texture2D" uid="uid://bssjoyltu5g8s" path="res://grass_tex.png" id="3_nwj2u"]
+[ext_resource type="Shader" path="res://PSX2.gdshader" id="3_ul55h"]
+[ext_resource type="Script" path="res://party_sprite.gd" id="4_vrkov"]
+[ext_resource type="Script" path="res://NPC.gd" id="5_si7nl"]
+[ext_resource type="Script" path="res://GameManager.gd" id="6_na5ge"]
+[ext_resource type="Script" path="res://InteractArea.gd" id="7_jnsd5"]
+[ext_resource type="Texture2D" uid="uid://cec0nq07fnhkh" path="res://talkbubble.png" id="7_mogk3"]
+[ext_resource type="FontFile" uid="uid://b0d5k3k4xpo3r" path="res://Ac437_IBM_Model3x_Alt1.ttf" id="11_x443u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xy7vt"]
+atlas = ExtResource("2_4bjg3")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5xts"]
+atlas = ExtResource("2_4bjg3")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqs4x"]
+atlas = ExtResource("2_4bjg3")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8fcc"]
+atlas = ExtResource("2_4bjg3")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7uur0"]
+atlas = ExtResource("2_4bjg3")
+region = Rect2(96, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_im8ro"]
+atlas = ExtResource("2_4bjg3")
+region = Rect2(112, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogpf0"]
+atlas = ExtResource("2_4bjg3")
+region = Rect2(64, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qi1g7"]
+atlas = ExtResource("2_4bjg3")
+region = Rect2(80, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hee54"]
+atlas = ExtResource("2_hbhrc")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ix6x4"]
+atlas = ExtResource("2_hbhrc")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxka3"]
+atlas = ExtResource("2_hbhrc")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsafn"]
+atlas = ExtResource("2_hbhrc")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5o3c"]
+atlas = ExtResource("2_hbhrc")
+region = Rect2(96, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qy8c8"]
+atlas = ExtResource("2_hbhrc")
+region = Rect2(112, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kfc2"]
+atlas = ExtResource("2_hbhrc")
+region = Rect2(64, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wghjv"]
+atlas = ExtResource("2_hbhrc")
+region = Rect2(80, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlafi"]
+atlas = ExtResource("1_6qpie")
+region = Rect2(0, 0, 26, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l543j"]
+atlas = ExtResource("1_6qpie")
+region = Rect2(26, 0, 26, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdlbk"]
+atlas = ExtResource("1_6qpie")
+region = Rect2(156, 0, 26, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eertt"]
+atlas = ExtResource("1_6qpie")
+region = Rect2(182, 0, 26, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djw3b"]
+atlas = ExtResource("1_6qpie")
+region = Rect2(104, 0, 26, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_roaw2"]
+atlas = ExtResource("1_6qpie")
+region = Rect2(130, 0, 26, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vtt6"]
+atlas = ExtResource("1_6qpie")
+region = Rect2(52, 0, 26, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1s3vc"]
+atlas = ExtResource("1_6qpie")
+region = Rect2(78, 0, 26, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ph7dg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xy7vt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5xts")
+}],
+"loop": true,
+"name": &"elder_walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqs4x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8fcc")
+}],
+"loop": true,
+"name": &"elder_walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7uur0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_im8ro")
+}],
+"loop": true,
+"name": &"elder_walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogpf0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qi1g7")
+}],
+"loop": true,
+"name": &"elder_walk_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hee54")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ix6x4")
+}],
+"loop": true,
+"name": &"hero2_walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxka3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hsafn")
+}],
+"loop": true,
+"name": &"hero2_walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5o3c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qy8c8")
+}],
+"loop": true,
+"name": &"hero2_walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kfc2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wghjv")
+}],
+"loop": true,
+"name": &"hero2_walk_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlafi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l543j")
+}],
+"loop": true,
+"name": &"hero_walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdlbk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eertt")
+}],
+"loop": true,
+"name": &"hero_walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djw3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_roaw2")
+}],
+"loop": true,
+"name": &"hero_walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vtt6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1s3vc")
+}],
+"loop": true,
+"name": &"hero_walk_up",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8tnyo"]
+size = Vector3(0.175, 0.25, 0.175)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fl1oo"]
+sky_top_color = Color(0.286275, 0.431373, 0.760784, 1)
+sky_horizon_color = Color(0.894118, 0.552941, 0.447059, 1)
+
+[sub_resource type="Sky" id="Sky_viei1"]
+sky_material = SubResource("ProceduralSkyMaterial_fl1oo")
+
+[sub_resource type="Environment" id="Environment_q804y"]
+background_mode = 2
+sky = SubResource("Sky_viei1")
+ambient_light_sky_contribution = 0.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_14qn6"]
+
+[sub_resource type="Theme" id="Theme_txbtm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_288sf"]
+bg_color = Color(0, 0, 0, 0.588235)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Theme" id="Theme_7ivfm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p72l8"]
+bg_color = Color(1, 1, 1, 1)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_ro652"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nvehh"]
+bg_color = Color(0.69804, 0.558867, 0.580144, 0)
+skew = Vector2(2.08165e-12, 2.08165e-12)
+
+[sub_resource type="Theme" id="Theme_5o7j5"]
+default_base_scale = 9.0
+default_font = ExtResource("11_x443u")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2cfkd"]
+bg_color = Color(1, 1, 1, 0.862745)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p47fn"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_as4mj"]
+height = 1.2
+radius = 0.25
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t1owk"]
+size = Vector3(10, 0.2, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7a2nv"]
+albedo_texture = ExtResource("3_nwj2u")
+uv1_scale = Vector3(50, 50, 50)
+texture_filter = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3x583"]
+render_priority = 0
+shader = ExtResource("3_ul55h")
+shader_parameter/jitter = 0.5
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = true
+shader_parameter/alpha_scissor = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_1qdl6"]
+material = SubResource("ShaderMaterial_3x583")
+size = Vector3(10, 0.2, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pq20l"]
+size = Vector3(1.25, 1, 1.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_je7wo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_27tct"]
+margin = 0.0
+size = Vector3(0.5, 0.2, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mll3b"]
+size = Vector3(0.5, 0.2, 0.5)
+
+[node name="test scene" type="Node3D"]
+
+[node name="HeroController" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.92623, 0)
+script = ExtResource("1_vex14")
+SPEED = 3.0
+
+[node name="HeroSprite" type="AnimatedSprite3D" parent="HeroController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.0134923, 2.08165e-12)
+centered = false
+offset = Vector2(-8, 2.08165e-12)
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_ph7dg")
+animation = &"hero2_walk_left"
+
+[node name="HeroCollider" type="CollisionShape3D" parent="HeroController"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.135, 2.08165e-12)
+shape = SubResource("BoxShape3D_8tnyo")
+
+[node name="SVC" type="SubViewportContainer" parent="HeroController/HeroCollider"]
+offset_right = 1280.0
+offset_bottom = 720.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="HeroController/HeroCollider/SVC"]
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="MainCamera" type="Camera3D" parent="HeroController/HeroCollider/SVC/SubViewport"]
+transform = Transform3D(1, -6.79356e-16, 1.11249e-16, 1.11249e-16, 0.318959, 0.947769, -6.79356e-16, -0.947769, 0.318959, 2.08165e-12, -0.92623, 1.08808)
+environment = SubResource("Environment_q804y")
+current = true
+
+[node name="InteractArea" type="Area3D" parent="HeroController"]
+
+[node name="InteractShape" type="CollisionShape3D" parent="HeroController/InteractArea"]
+shape = SubResource("BoxShape3D_14qn6")
+
+[node name="PartySprite1" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.92623, 0)
+
+[node name="Sprite" type="AnimatedSprite3D" parent="PartySprite1" node_paths=PackedStringArray("myLeader")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.0134923, 2.08165e-12)
+centered = false
+offset = Vector2(-8, 2.08165e-12)
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_ph7dg")
+animation = &"hero2_walk_left"
+script = ExtResource("4_vrkov")
+myLeader = NodePath("../../HeroController/HeroSprite")
+
+[node name="Collider" type="CollisionShape3D" parent="PartySprite1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.135, 2.08165e-12)
+shape = SubResource("BoxShape3D_8tnyo")
+disabled = true
+
+[node name="InteractArea" type="Area3D" parent="PartySprite1"]
+
+[node name="InteractShape" type="CollisionShape3D" parent="PartySprite1/InteractArea"]
+shape = SubResource("BoxShape3D_14qn6")
+
+[node name="PartySprite2" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.92623, 0)
+
+[node name="Sprite" type="AnimatedSprite3D" parent="PartySprite2" node_paths=PackedStringArray("myLeader")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.0134923, 2.08165e-12)
+centered = false
+offset = Vector2(-8, 2.08165e-12)
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_ph7dg")
+animation = &"hero2_walk_left"
+script = ExtResource("4_vrkov")
+myLeader = NodePath("../../PartySprite1/Sprite")
+
+[node name="Collider" type="CollisionShape3D" parent="PartySprite2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.135, 2.08165e-12)
+shape = SubResource("BoxShape3D_8tnyo")
+disabled = true
+
+[node name="InteractArea" type="Area3D" parent="PartySprite2"]
+
+[node name="InteractShape" type="CollisionShape3D" parent="PartySprite2/InteractArea"]
+shape = SubResource("BoxShape3D_14qn6")
+disabled = true
+
+[node name="PartySprite3" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.92623, 0)
+
+[node name="Sprite" type="AnimatedSprite3D" parent="PartySprite3" node_paths=PackedStringArray("myLeader")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.0134923, 2.08165e-12)
+centered = false
+offset = Vector2(-8, 2.08165e-12)
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_ph7dg")
+animation = &"hero2_walk_left"
+script = ExtResource("4_vrkov")
+myLeader = NodePath("../../PartySprite2/Sprite")
+
+[node name="Collider" type="CollisionShape3D" parent="PartySprite3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.135, 2.08165e-12)
+shape = SubResource("BoxShape3D_8tnyo")
+disabled = true
+
+[node name="InteractArea" type="Area3D" parent="PartySprite3"]
+
+[node name="InteractShape" type="CollisionShape3D" parent="PartySprite3/InteractArea"]
+shape = SubResource("BoxShape3D_14qn6")
+disabled = true
+
+[node name="GameManager" type="Node3D" parent="."]
+script = ExtResource("6_na5ge")
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 60.0
+offset_bottom = 65.0
+scale = Vector2(3, 3)
+
+[node name="DialogueBox" type="Control" parent="GUI"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PanelBG" type="PanelContainer" parent="GUI/DialogueBox"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 138.333
+offset_right = 420.0
+offset_bottom = 232.333
+theme = SubResource("Theme_txbtm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_288sf")
+
+[node name="PanelBorder" type="Panel" parent="GUI/DialogueBox"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 141.333
+offset_right = 417.0
+offset_bottom = 229.333
+theme = SubResource("Theme_7ivfm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_p72l8")
+
+[node name="TextContainer" type="PanelContainer" parent="GUI/DialogueBox"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 148.0
+offset_right = 412.0
+offset_bottom = 224.0
+theme = SubResource("Theme_ro652")
+theme_override_styles/panel = SubResource("StyleBoxFlat_nvehh")
+
+[node name="DialogueText" type="RichTextLabel" parent="GUI/DialogueBox/TextContainer"]
+layout_mode = 2
+theme = SubResource("Theme_5o7j5")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.47451, 0.47451, 0.47451, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/normal_font = ExtResource("11_x443u")
+theme_override_font_sizes/normal_font_size = 18
+text = "Bent: This is a test of the Godot GUI system.
+Line two
+Line three
+Line four! Here we go."
+
+[node name="CombatGroup" type="Control" parent="GUI"]
+visible = false
+anchors_preset = 0
+offset_right = 426.0
+offset_bottom = 239.0
+
+[node name="CombatBox" type="Control" parent="GUI/CombatGroup"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PanelBG" type="PanelContainer" parent="GUI/CombatGroup/CombatBox"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 182.0
+offset_right = 420.0
+offset_bottom = 232.0
+theme = SubResource("Theme_txbtm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_288sf")
+
+[node name="PanelBorder" type="Panel" parent="GUI/CombatGroup/CombatBox"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 184.0
+offset_right = 417.0
+offset_bottom = 230.0
+theme = SubResource("Theme_7ivfm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_p72l8")
+
+[node name="TextContainer" type="PanelContainer" parent="GUI/CombatGroup/CombatBox"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 187.667
+offset_right = 412.0
+offset_bottom = 226.667
+theme = SubResource("Theme_ro652")
+theme_override_styles/panel = SubResource("StyleBoxFlat_nvehh")
+
+[node name="DialogueText" type="RichTextLabel" parent="GUI/CombatGroup/CombatBox/TextContainer"]
+layout_mode = 2
+theme = SubResource("Theme_5o7j5")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.47451, 0.47451, 0.47451, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/normal_font = ExtResource("11_x443u")
+theme_override_font_sizes/normal_font_size = 18
+text = "Slimey Gooper slimes nearby!
+The entire party takes 132 damage!!"
+
+[node name="MenuBox" type="Control" parent="GUI"]
+visible = false
+anchors_preset = 0
+offset_top = -131.333
+offset_right = 40.0
+offset_bottom = -91.3333
+
+[node name="PanelBG" type="PanelContainer" parent="GUI/MenuBox"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 138.0
+offset_right = 141.0
+offset_bottom = 232.0
+theme = SubResource("Theme_txbtm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_288sf")
+
+[node name="PanelBorder" type="Panel" parent="GUI/MenuBox"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 141.0
+offset_right = 138.0
+offset_bottom = 229.0
+theme = SubResource("Theme_7ivfm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_p72l8")
+
+[node name="TextContainer" type="PanelContainer" parent="GUI/MenuBox"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 148.0
+offset_right = 412.0
+offset_bottom = 224.0
+theme = SubResource("Theme_ro652")
+theme_override_styles/panel = SubResource("StyleBoxFlat_nvehh")
+
+[node name="DialogueText" type="RichTextLabel" parent="GUI/MenuBox/TextContainer"]
+layout_mode = 2
+theme = SubResource("Theme_5o7j5")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.47451, 0.47451, 0.47451, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/normal_font = ExtResource("11_x443u")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "Items   Skills
+Status  Scrolls
+Equip   Party
+Map     System"
+
+[node name="StatBox" type="Control" parent="GUI"]
+visible = false
+anchors_preset = 0
+offset_left = 122.0
+offset_top = 185.0
+offset_right = 424.0
+offset_bottom = 264.0
+
+[node name="PanelBG" type="PanelContainer" parent="GUI/StatBox"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -22.3333
+offset_right = 299.0
+offset_bottom = 47.6667
+theme = SubResource("Theme_txbtm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_288sf")
+
+[node name="PanelBorder" type="Panel" parent="GUI/StatBox"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = -20.3333
+offset_right = 295.0
+offset_bottom = 44.6667
+theme = SubResource("Theme_7ivfm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_p72l8")
+
+[node name="Player1StatBox" type="PanelContainer" parent="GUI/StatBox"]
+layout_mode = 0
+offset_left = 13.6667
+offset_top = -17.0
+offset_right = 145.667
+offset_bottom = 56.0
+theme = SubResource("Theme_ro652")
+theme_override_styles/panel = SubResource("StyleBoxFlat_nvehh")
+
+[node name="DialogueText" type="RichTextLabel" parent="GUI/StatBox/Player1StatBox"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.435294, 0.435294, 0.435294, 1)
+theme_override_constants/shadow_offset_y = -1
+theme_override_constants/outline_size = 1
+theme_override_fonts/normal_font = ExtResource("11_x443u")
+theme_override_font_sizes/normal_font_size = 14
+text = "Bent
+B 999/999
+C 999/999
+S 999/999"
+
+[node name="Player2StatBox" type="PanelContainer" parent="GUI/StatBox"]
+layout_mode = 0
+offset_left = 85.6667
+offset_top = -17.0
+offset_right = 328.667
+offset_bottom = 56.0
+theme = SubResource("Theme_ro652")
+theme_override_styles/panel = SubResource("StyleBoxFlat_nvehh")
+
+[node name="DialogueText" type="RichTextLabel" parent="GUI/StatBox/Player2StatBox"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.435294, 0.435294, 0.435294, 1)
+theme_override_constants/shadow_offset_y = -1
+theme_override_constants/outline_size = 1
+theme_override_fonts/normal_font = ExtResource("11_x443u")
+theme_override_font_sizes/normal_font_size = 14
+text = "Bent
+B 999/999
+C 999/999
+S 999/999"
+
+[node name="Player3StatBox" type="PanelContainer" parent="GUI/StatBox"]
+layout_mode = 0
+offset_left = 155.667
+offset_top = -18.0
+offset_right = 446.667
+offset_bottom = 55.0
+theme = SubResource("Theme_ro652")
+theme_override_styles/panel = SubResource("StyleBoxFlat_nvehh")
+
+[node name="DialogueText" type="RichTextLabel" parent="GUI/StatBox/Player3StatBox"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.435294, 0.435294, 0.435294, 1)
+theme_override_constants/shadow_offset_y = -1
+theme_override_constants/outline_size = 1
+theme_override_fonts/normal_font = ExtResource("11_x443u")
+theme_override_font_sizes/normal_font_size = 14
+text = "Bent
+B 999/999
+C 999/999
+S 999/999"
+
+[node name="Player4StatBox" type="PanelContainer" parent="GUI/StatBox"]
+layout_mode = 0
+offset_left = 228.667
+offset_top = -18.0
+offset_right = 458.667
+offset_bottom = 54.0
+theme = SubResource("Theme_ro652")
+theme_override_styles/panel = SubResource("StyleBoxFlat_nvehh")
+
+[node name="DialogueText" type="RichTextLabel" parent="GUI/StatBox/Player4StatBox"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.435294, 0.435294, 0.435294, 1)
+theme_override_constants/shadow_offset_y = -1
+theme_override_constants/outline_size = 1
+theme_override_fonts/normal_font = ExtResource("11_x443u")
+theme_override_font_sizes/normal_font_size = 14
+text = "Bent
+B 999/999
+C 999/999
+S 999/999"
+
+[node name="StatDivider1" type="PanelContainer" parent="GUI/StatBox"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = -11.3333
+offset_right = 81.0
+offset_bottom = 37.6667
+theme_override_styles/panel = SubResource("StyleBoxFlat_2cfkd")
+
+[node name="StatDivider2" type="PanelContainer" parent="GUI/StatBox"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = -12.3333
+offset_right = 151.0
+offset_bottom = 37.6667
+theme_override_styles/panel = SubResource("StyleBoxFlat_2cfkd")
+
+[node name="StatDivider3" type="PanelContainer" parent="GUI/StatBox"]
+layout_mode = 0
+offset_left = 222.0
+offset_top = -12.3333
+offset_right = 223.0
+offset_bottom = 38.6667
+theme_override_styles/panel = SubResource("StyleBoxFlat_2cfkd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.783455, 0.38095, 0.490994, -0.621449, 0.480261, 0.618992, 0, -0.79008, 0.613004, 0, 1.9536, 2.6914)
+light_color = Color(1, 1, 0.780392, 1)
+light_energy = 0.5
+light_indirect_energy = 0.5
+light_volumetric_fog_energy = 0.5
+light_bake_mode = 1
+shadow_enabled = true
+
+[node name="NPC001" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0.619203, -1.91274, -0.348732)
+centered = false
+offset = Vector2(-8, 2.08165e-12)
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_ph7dg")
+animation = &"elder_walk_left"
+script = ExtResource("5_si7nl")
+mySprite = "elder"
+facing = Vector3(10, 2.08165e-12, 2.08165e-12)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="NPC001"]
+
+[node name="InteractArea" type="Area3D" parent="NPC001/CharacterBody3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.1, 0)
+script = ExtResource("7_jnsd5")
+
+[node name="TalkBubble" type="Sprite3D" parent="NPC001/CharacterBody3D/InteractArea"]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 1.89738, 0.123361)
+pixel_size = 0.0075
+billboard = 1
+texture_filter = 0
+texture = ExtResource("7_mogk3")
+
+[node name="InteractShape" type="CollisionShape3D" parent="NPC001/CharacterBody3D/InteractArea"]
+shape = SubResource("BoxShape3D_p47fn")
+
+[node name="NPCCollider" type="CollisionShape3D" parent="NPC001/CharacterBody3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.1, 0)
+shape = SubResource("CylinderShape3D_as4mj")
+
+[node name="grasstest" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.06485, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="grasstest"]
+shape = SubResource("BoxShape3D_t1owk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="grasstest/CollisionShape3D"]
+material_override = SubResource("StandardMaterial3D_7a2nv")
+mesh = SubResource("BoxMesh_1qdl6")
+
+[node name="cubeA" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0541, -1.57907, -2.47946)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cubeA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0710449, 0, 0.0990601)
+shape = SubResource("BoxShape3D_pq20l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="cubeA/CollisionShape3D"]
+mesh = SubResource("BoxMesh_je7wo")
+
+[node name="cubeB" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.963, -1.57907, -0.807926)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cubeB"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0012157, 0, -0.000736952)
+shape = SubResource("BoxShape3D_27tct")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="cubeB/CollisionShape3D"]
+mesh = SubResource("BoxMesh_mll3b")
