@@ -8,9 +8,9 @@ const JUMP_VELOCITY = 3.5;
 @onready var myCam = get_node("HeroCollider/SVC/SubViewport/MainCamera");
 @onready var interactor = get_node("InteractArea")
 @onready var GM = get_node("../GameManager")
-@onready var p2 = get_node("../PartySprite1/Sprite")
-@onready var p3 = get_node("../PartySprite2/Sprite")
-@onready var p4 = get_node("../PartySprite3/Sprite")
+@onready var p2 = get_node("../PartySprite1")
+@onready var p3 = get_node("../PartySprite2")
+@onready var p4 = get_node("../PartySprite3")
 @onready var statsWindow : Control = get_node("../GUI/StatBox")
 @onready var menuWindow : Control = get_node("../GUI/MenuBox")
 
@@ -29,6 +29,14 @@ var delay_counter = 0.0
 var idle_delay = 3.0
 var idle_counter = 0.0
 
+func _ready():
+	if(p2):
+		p2.myLeader = self as CharacterBody3D;
+	if(p3):
+		p3.myLeader = p2 as CharacterBody3D;
+	if(p4):
+		p4.myLeader = p3 as CharacterBody3D;
+	
 	
 func _physics_process(delta):
 	
@@ -47,6 +55,9 @@ func _physics_process(delta):
 		#TODO : PARTY FALLING PROPERLY
 	
 	var aspd = 1.0/3.0;
+	
+	
+	## Control mode: normal 
 	
 	if Monastery.control_mode == Monastery.ControlModes.NORMAL:
 		# Handle jump.
@@ -72,14 +83,15 @@ func _physics_process(delta):
 			var areas = interactor.get_overlapping_areas()
 			for a in areas:
 				var npc = a.get_parent().get_parent()
-				if(npc.talkBubbleOpen):
-					GM.event_script = npc.myScript
-					npc.face_hero()
-					npc.stopped = true
-					stop_all_anim()
-					Monastery.control_mode = Monastery.ControlModes.WAITING_SCRIPT
-					GM.db.show()
-					Monastery.activeNPC = npc
+				if(npc.name.find("NPC") != -1):
+					if(npc.talkBubbleOpen):
+						GM.event_script = npc.myScript
+						npc.face_hero()
+						npc.stopped = true
+						stop_all_anim()
+						Monastery.control_mode = Monastery.ControlModes.WAITING_SCRIPT
+						GM.db.show()
+						Monastery.activeNPC = npc
 			if Monastery.activeNPC == null:
 				menuWindow.show();
 				velocity = Vector3(0.0, 0.0, 0.0)
@@ -119,11 +131,16 @@ func _physics_process(delta):
 		
 		velocity = velocity.normalized();
 		# END: normal control mode 
-		
+	
+	## control mode menu:
+	
 	elif(Monastery.control_mode == Monastery.ControlModes.MENU_SELECT):
 		if Input.is_action_just_pressed("ui_accept"):
 			menuWindow.hide()
 			Monastery.control_mode = Monastery.ControlModes.NORMAL
+	
+	## control mode else :
+	
 	else: # WAITING_SCRIPT and ACCEPT_SCRIPT ... 
 		velocity = Vector3(0.0, 0.0, 0.0)
 		
@@ -142,8 +159,11 @@ func _physics_process(delta):
 	move_and_slide()
 
 func stop_all_anim():
-	p2.stopped = true 
-	p3.stopped = true 
-	p4.stopped = true 
+	if(p2):
+		p2.stopped = true 
+	if(p3):
+		p3.stopped = true 
+	if(p4):
+		p4.stopped = true 
 	self.stopped = true 
 	

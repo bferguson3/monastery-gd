@@ -8,7 +8,7 @@ extends AnimatedSprite3D
 @export var myScript : Array
 @export var scriptCtr : int = 0
 
-var talkBubbleOpen : bool = false
+@export var talkBubbleOpen : bool = false
 var stopped
 var change_facing : bool
 var pscale : float = 4.0
