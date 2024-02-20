@@ -1,6 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bqnurnr6bwxjc"]
+[gd_scene load_steps=12 format=3 uid="uid://bqnurnr6bwxjc"]
 
 [ext_resource type="FontFile" uid="uid://b0d5k3k4xpo3r" path="res://Ac437_IBM_Model3x_Alt1.ttf" id="1_5pfap"]
+[ext_resource type="Script" path="res://gui_controller.gd" id="1_6rood"]
+[ext_resource type="PackedScene" uid="uid://vwry8ixvg1dd" path="res://menu_box.tscn" id="3_cedxm"]
 
 [sub_resource type="Theme" id="Theme_txbtm"]
 
@@ -46,6 +48,7 @@ anchors_preset = 0
 offset_right = 60.0
 offset_bottom = 65.0
 scale = Vector2(3, 3)
+script = ExtResource("1_6rood")
 
 [node name="DialogueBox" type="Control" parent="."]
 visible = false
@@ -142,53 +145,9 @@ theme_override_font_sizes/normal_font_size = 18
 text = "Slimey Gooper slimes nearby!
 The entire party takes 132 damage!!"
 
-[node name="MenuBox" type="Control" parent="."]
+[node name="MenuBox" parent="." instance=ExtResource("3_cedxm")]
 visible = false
-anchors_preset = 0
-offset_top = -131.333
-offset_right = 40.0
-offset_bottom = -91.3333
-
-[node name="PanelBG" type="PanelContainer" parent="MenuBox"]
-layout_mode = 0
-offset_left = 7.0
-offset_top = 138.0
-offset_right = 141.0
-offset_bottom = 232.0
-theme = SubResource("Theme_txbtm")
-theme_override_styles/panel = SubResource("StyleBoxFlat_288sf")
-
-[node name="PanelBorder" type="Panel" parent="MenuBox"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 141.0
-offset_right = 138.0
-offset_bottom = 229.0
-theme = SubResource("Theme_7ivfm")
-theme_override_styles/panel = SubResource("StyleBoxFlat_p72l8")
-
-[node name="TextContainer" type="PanelContainer" parent="MenuBox"]
-layout_mode = 0
-offset_left = 18.0
-offset_top = 148.0
-offset_right = 412.0
-offset_bottom = 224.0
-theme = SubResource("Theme_ro652")
-theme_override_styles/panel = SubResource("StyleBoxFlat_nvehh")
-
-[node name="DialogueText" type="RichTextLabel" parent="MenuBox/TextContainer"]
-layout_mode = 2
-theme = SubResource("Theme_5o7j5")
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0.47451, 0.47451, 0.47451, 1)
-theme_override_constants/outline_size = 1
-theme_override_fonts/normal_font = ExtResource("1_5pfap")
-theme_override_font_sizes/normal_font_size = 18
-bbcode_enabled = true
-text = "Items   Skills
-Status  Scrolls
-Equip   Party
-Map     System"
+script = null
 
 [node name="StatBox" type="Control" parent="."]
 visible = false
@@ -199,6 +158,7 @@ offset_right = 424.0
 offset_bottom = 264.0
 
 [node name="PanelBG" type="PanelContainer" parent="StatBox"]
+visible = false
 layout_mode = 0
 offset_left = 5.0
 offset_top = -22.3333
@@ -208,6 +168,7 @@ theme = SubResource("Theme_txbtm")
 theme_override_styles/panel = SubResource("StyleBoxFlat_288sf")
 
 [node name="PanelBorder" type="Panel" parent="StatBox"]
+visible = false
 layout_mode = 0
 offset_left = 7.0
 offset_top = -20.3333
@@ -217,6 +178,7 @@ theme = SubResource("Theme_7ivfm")
 theme_override_styles/panel = SubResource("StyleBoxFlat_p72l8")
 
 [node name="Player1StatBox" type="PanelContainer" parent="StatBox"]
+visible = false
 layout_mode = 0
 offset_left = 13.6667
 offset_top = -17.0
@@ -226,6 +188,7 @@ theme = SubResource("Theme_ro652")
 theme_override_styles/panel = SubResource("StyleBoxFlat_nvehh")
 
 [node name="DialogueText" type="RichTextLabel" parent="StatBox/Player1StatBox"]
+visible = false
 texture_filter = 1
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -240,6 +203,7 @@ C 999/999
 S 999/999"
 
 [node name="Player2StatBox" type="PanelContainer" parent="StatBox"]
+visible = false
 layout_mode = 0
 offset_left = 85.6667
 offset_top = -17.0
@@ -249,6 +213,7 @@ theme = SubResource("Theme_ro652")
 theme_override_styles/panel = SubResource("StyleBoxFlat_nvehh")
 
 [node name="DialogueText" type="RichTextLabel" parent="StatBox/Player2StatBox"]
+visible = false
 texture_filter = 1
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -263,6 +228,7 @@ C 999/999
 S 999/999"
 
 [node name="Player3StatBox" type="PanelContainer" parent="StatBox"]
+visible = false
 layout_mode = 0
 offset_left = 155.667
 offset_top = -18.0
@@ -272,6 +238,7 @@ theme = SubResource("Theme_ro652")
 theme_override_styles/panel = SubResource("StyleBoxFlat_nvehh")
 
 [node name="DialogueText" type="RichTextLabel" parent="StatBox/Player3StatBox"]
+visible = false
 texture_filter = 1
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -286,6 +253,7 @@ C 999/999
 S 999/999"
 
 [node name="Player4StatBox" type="PanelContainer" parent="StatBox"]
+visible = false
 layout_mode = 0
 offset_left = 228.667
 offset_top = -18.0
@@ -295,6 +263,7 @@ theme = SubResource("Theme_ro652")
 theme_override_styles/panel = SubResource("StyleBoxFlat_nvehh")
 
 [node name="DialogueText" type="RichTextLabel" parent="StatBox/Player4StatBox"]
+visible = false
 texture_filter = 1
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -309,6 +278,7 @@ C 999/999
 S 999/999"
 
 [node name="StatDivider1" type="PanelContainer" parent="StatBox"]
+visible = false
 layout_mode = 0
 offset_left = 80.0
 offset_top = -11.3333
@@ -317,6 +287,7 @@ offset_bottom = 37.6667
 theme_override_styles/panel = SubResource("StyleBoxFlat_2cfkd")
 
 [node name="StatDivider2" type="PanelContainer" parent="StatBox"]
+visible = false
 layout_mode = 0
 offset_left = 150.0
 offset_top = -12.3333
@@ -325,6 +296,7 @@ offset_bottom = 37.6667
 theme_override_styles/panel = SubResource("StyleBoxFlat_2cfkd")
 
 [node name="StatDivider3" type="PanelContainer" parent="StatBox"]
+visible = false
 layout_mode = 0
 offset_left = 222.0
 offset_top = -12.3333

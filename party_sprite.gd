@@ -12,6 +12,7 @@ func _process(delta):
 	if(Monastery.control_mode == Monastery.ControlModes.NORMAL) and stopped:
 		stopped = false 
 	if not stopped:
+		# TODO FIXME HERE 
 		var myDistance = get_global_position().distance_to(myLeader.get_global_position())
 		var direction = (myLeader.get_global_position() - get_global_position()).normalized()
 		var camdir = direction * myCam.basis
