@@ -26,7 +26,10 @@ var longest = 0
 var originPos;
 var rowLens = []
 var root;
+var idle_ctr : float = 0
+const idle_time : float = 2.0
 
+var myType = Monastery.MenuTypes.NONE
 
 func _ready():
 	screenRatioY = DisplayServer.window_get_size()[1] / my_x_res;
@@ -85,12 +88,12 @@ func setup(ilist:Array):
 	var text_width = fontSize * totallen * 0.7;
 	var tc = get_node("TextContainer")
 	var mySz = tc.get_size();
-	tc.set_position(Vector2(originPos[0] + (screenRatioX), originPos[1] + (screenRatioY * 1)))
+	tc.set_position(Vector2(originPos[0] + (screenRatioX), originPos[1] + (screenRatioY + 1)))
 	
 	set_position(Vector2(myX, myY))
 	
 	var cont = get_node("PanelBG")
-	cont.set_size(Vector2(text_width - (screenRatioX), fontSize * rows))
+	cont.set_size(Vector2(text_width - (screenRatioX), fontSize * rows + screenRatioY))
 	var bd = get_node("PanelBorder")
 	bd.set_size(cont.get_size())
 	
@@ -100,4 +103,22 @@ func setup(ilist:Array):
 func _on_size_changed():
 	pass
 	
+func _process(delta):
+	if(myType == Monastery.MenuTypes.IDLE_STATUS):
+		if Monastery.control_mode == Monastery.ControlModes.NORMAL:
+			idle_ctr += delta;
+			if idle_ctr > idle_time:
+				self.show()
+			else:
+				self.hide()
+		elif Monastery.control_mode == Monastery.ControlModes.MENU_BASE:
+			self.show()
+		else:
+			idle_ctr = 0
+			self.hide()
+				
+	if(Input.is_action_just_pressed("ui_down") or Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right") or Input.is_action_just_pressed("ui_up")):
+		if Monastery.control_mode == Monastery.ControlModes.NORMAL:
+			idle_ctr = 0
 
+	pass

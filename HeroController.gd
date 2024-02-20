@@ -11,7 +11,7 @@ const JUMP_VELOCITY = 3.5;
 @onready var p2 = get_node("../PartySprite1")
 @onready var p3 = get_node("../PartySprite2")
 @onready var p4 = get_node("../PartySprite3")
-@onready var statsWindow : Control = get_node("../GUI/StatBox")
+#@onready var statsWindow : Control = get_node("../GUI/StatBox")
 @onready var menuWindow : Control = get_node("../GUI/MenuBox")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -151,10 +151,10 @@ func _physics_process(delta):
 		mySprite.stop()
 		
 	# show stat window 
-	if(idle_counter > idle_delay):
-		statsWindow.show()
-	else:
-		statsWindow.hide()
+	#if(idle_counter > idle_delay):
+	#	statsWindow.show()
+	#else:
+	#	statsWindow.hide()
 	
 	move_and_slide()
 
