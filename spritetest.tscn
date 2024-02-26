@@ -47,6 +47,10 @@ size = Vector3(0.5, 0.2, 0.5)
 
 [node name="PartySprite1" parent="." instance=ExtResource("5_usmuh")]
 
+[node name="PartySprite2" parent="." instance=ExtResource("5_usmuh")]
+
+[node name="PartySprite3" parent="." instance=ExtResource("5_usmuh")]
+
 [node name="GameManager" type="Node3D" parent="."]
 script = ExtResource("6_na5ge")
 

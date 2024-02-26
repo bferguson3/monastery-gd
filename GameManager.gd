@@ -4,14 +4,21 @@ extends Node3D
 
 class_name GameManager
 
-var party = []
+@export var party = []
 var event_script
 @onready var gui = get_node("../GUI")
 @onready var db = get_node("../GUI/DialogueBox")
 @onready var txt = db.get_node("TextContainer").get_node("DialogueText")
 var _i
 var dialoguelen
+var script_incrementer : int = 2
+
+enum item_callbacks { NONE, HEAL_A_WORLD, FIRE_A_BATTLE, HEAL_A_BATTLE }
+
+
 #var activeNPC
+# ITEM DATABASE?
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,12 +28,17 @@ func _ready():
 		party.push_back(monk.new())
 		i-=1
 	party[0].make_new(Monastery.FORMS.CRANE)
+	
+	party[0].inventory[0] = Item.new()
+	party[0].inventory[0].itemName = "Herb"
+	party[0].inventory[0].desc = "A little bit of spice that heals very little Body."
+	party[0].inventory[0].worldCallback = item_callbacks.HEAL_A_WORLD
+	
 	party[1].make_new(Monastery.FORMS.BOAR)
 	party[2].make_new(Monastery.FORMS.SNAKE)
 	party[3].make_new(Monastery.FORMS.DEER)
 	event_script = []
 
-var script_incrementer : int = 2
 
 func _process(_delta):
 	#print_debug(1.0 / Performance.get_monitor(Performance.TIME_PROCESS))
@@ -68,6 +80,21 @@ func _process(_delta):
 					db.hide()
 					
 
+
+func run_callback(item_callbacks):
+	match item_callbacks:
+		item_callbacks.NONE:
+			pass
+		item_callbacks.HEAL_A_WORLD:
+			pass
+	pass
+
+func heal_a():
+	pass
+	
+func fire_a():
+	pass 
+	
 #-- dmg calc:
 #-- dmg = atp * (atp / dfp*2)
 

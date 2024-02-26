@@ -28,6 +28,10 @@ class_name monk
 @export var speed:float;
 @export var dodge:float;
 
+@export var inventory : Array = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] # type Item 
+
+
+
 # to-hit is (player's _acc) - (enemy's dodge)
 
 # damage calc requires incoming power and current armor 

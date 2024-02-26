@@ -2,6 +2,9 @@ extends Control
 
 var MenuWindow = preload("res://menu_box.tscn")
 
+@export var mainMenu : MenuWindow
+@export var statusMenu : MenuWindow 
+
 const body_icon = '♥'
 const struct_icon = '⌂'
 const breath_icon = '≈'
@@ -21,7 +24,9 @@ func _ready():
 	menu.setup([" Items", " Skills", " Status", "Scrolls", " Equip", " Party", " Map ", "  System"])
 	
 	menu.link_function(0, _ITEMS);
-	menu.myFunctions[0].call();
+	#menu.myFunctions[0].call();
+	menu.hide();
+	mainMenu = menu;
 	
 	var menu2 = MenuWindow.instantiate()
 	add_child(menu2)
@@ -30,6 +35,7 @@ func _ready():
 	menu2.yPosition = 0.90
 	menu2.columns = 1
 	menu2.setup([" Ben","♥  89/ 92", "⌂ 202/230", "≈  30/ 30"])
+	statusMenu = menu2;
 	
 	pass
 

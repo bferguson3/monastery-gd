@@ -1,5 +1,5 @@
 extends Control
-#class_name MenuWindow
+class_name MenuWindow
 
 @export var xPosition : float = 0.05;
 @export var yPosition : float = 0.05;
