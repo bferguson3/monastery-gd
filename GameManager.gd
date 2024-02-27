@@ -13,11 +13,21 @@ var _i
 var dialoguelen
 var script_incrementer : int = 2
 
-enum item_callbacks { NONE, HEAL_A_WORLD, FIRE_A_BATTLE, HEAL_A_BATTLE }
-
 
 #var activeNPC
 # ITEM DATABASE?
+var item_callbacks = load("res://item_callbacks.gd").item_callbacks
+
+func add_item_to(item : Monastery.Items, me : monk):
+	#NAME,DESCRIPTION,COST,CALLBACK,STACKABLE
+	var new = Item.new()
+	new = Monastery.item_db[item]
+	if(me.inventory.size() < 15):
+		me.inventory.push_back(new)
+	else:
+		return false
+	#print_debug(me.inventory[0][Monastery.ItemEnums.NAME])
+	return true
 
 
 # Called when the node enters the scene tree for the first time.
@@ -29,10 +39,9 @@ func _ready():
 		i-=1
 	party[0].make_new(Monastery.FORMS.CRANE)
 	
-	party[0].inventory[0] = Item.new()
-	party[0].inventory[0].itemName = "Herb"
-	party[0].inventory[0].desc = "A little bit of spice that heals very little Body."
-	party[0].inventory[0].worldCallback = item_callbacks.HEAL_A_WORLD
+	if(!add_item_to(Monastery.Items.HERB, party[0])):
+		print_debug("failed")
+		# todo: add menu UI somesuch here. 
 	
 	party[1].make_new(Monastery.FORMS.BOAR)
 	party[2].make_new(Monastery.FORMS.SNAKE)
@@ -59,6 +68,7 @@ func _process(_delta):
 				# then wait for input 
 				else:
 					Monastery.control_mode = Monastery.ControlModes.ACCEPT_SCRIPT
+		########
 		elif Monastery.control_mode == Monastery.ControlModes.ACCEPT_SCRIPT:
 			if(Input.is_action_just_pressed("ui_accept")):
 				# reset the display iterator
@@ -85,11 +95,11 @@ func run_callback(item_callbacks):
 	match item_callbacks:
 		item_callbacks.NONE:
 			pass
-		item_callbacks.HEAL_A_WORLD:
+		item_callbacks.HEALBODY_A:
 			pass
 	pass
 
-func heal_a():
+func healbody_a():
 	pass
 	
 func fire_a():

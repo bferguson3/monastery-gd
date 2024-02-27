@@ -28,7 +28,7 @@ class_name monk
 @export var speed:float;
 @export var dodge:float;
 
-@export var inventory : Array = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] # type Item 
+@export var inventory = []
 
 
 
@@ -182,8 +182,8 @@ func apply_equip():
 	apply_equip_effect(equip_scroll_a.get_eqp())
 	apply_equip_effect(equip_scroll_b.get_eqp())
 	
-	print_debug("total armor", equip_arm.get_eqp()[2])
-	print_debug("total breath", breath)
+	#print_debug("total armor", equip_arm.get_eqp()[2])
+	#print_debug("total breath", breath)
 	
 	return
 

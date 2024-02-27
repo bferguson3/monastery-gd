@@ -85,10 +85,14 @@ var form_stat_modifiers = [
 	[1.0, 1.1, 1.0, 1.0, 1.3, 1.1, 1.3, 1.0]  #golden snake
 ]
 
+# THESE MUST BE RE-PARSED INTO DATA:
 var arm_equipment = [ ];
+var arm_equipment_db= [];
 var body_equipment = [ ];
 var leg_equipment = [ ];
 var scroll_equipment = [ ];
+var item_db = [];
+# THIS IS ALWAYS STRINGS:
 var current_scene_script = [ ];
 
 func get_arm_equipment(index):
@@ -104,6 +108,13 @@ var rng;
 enum ControlModes { NORMAL, WAITING_SCRIPT, ACCEPT_SCRIPT, MENU_SELECT, MENU_BASE }
 var control_mode
 var activeNPC : Node3D = null;
+@export var callbackColumnNo = 3; # TODO VERIFY
+enum ItemEnums { NAME,DESCRIPTION,COST,CALLBACK,STACKABLE };
+
+# TODO make this dynamic like item_callbacks.gd!
+enum Items { 
+	NONE, HERB
+};
 
 func get_control_mode():
 	return control_mode
@@ -113,9 +124,12 @@ func _ready():
 	rng.randomize()
 	# import csv data files 
 	load_csv_dat("res://arm_equip.dat", arm_equipment)
+	
 	load_csv_dat("res://body_equip.dat", body_equipment)
 	load_csv_dat("res://leg_equip.dat", leg_equipment)
 	load_csv_dat("res://scroll_equip.dat", scroll_equipment)
+	
+	load_csv_dat("res://items.dat", item_db)
 	
 	load_csv_dat("res://scene_test_script.dat", current_scene_script)
 	process_scene_script(current_scene_script)

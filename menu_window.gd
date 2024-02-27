@@ -34,7 +34,7 @@ var myType = Monastery.MenuTypes.NONE
 func _ready():
 	screenRatioY = DisplayServer.window_get_size()[1] / my_x_res;
 	screenRatioX = DisplayServer.window_get_size()[0] / my_y_res;
-	print_debug(screenRatioY)
+	#print_debug(screenRatioY)
 	root = get_tree().get_root()
 	root.connect("size_changed", _on_size_changed)
 	var tc = get_node("TextContainer")
