@@ -1,0 +1,112 @@
+[gd_scene load_steps=18 format=3 uid="uid://dymdvvhcxe8xr"]
+
+[ext_resource type="PackedScene" uid="uid://boa0u3fu56gcx" path="res://scenes/hero_controller.tscn" id="1_ten8w"]
+[ext_resource type="Texture2D" uid="uid://bssjoyltu5g8s" path="res://grass_tex.png" id="3_nwj2u"]
+[ext_resource type="Shader" path="res://PSX2.gdshader" id="3_ul55h"]
+[ext_resource type="PackedScene" uid="uid://bqnurnr6bwxjc" path="res://scenes/gui.tscn" id="4_5o3bb"]
+[ext_resource type="PackedScene" uid="uid://bdip7urohkkwc" path="res://scenes/party_sprite.tscn" id="5_usmuh"]
+[ext_resource type="Script" path="res://src/GameManager.gd" id="6_na5ge"]
+[ext_resource type="PackedScene" uid="uid://vcnv17rov42" path="res://scenes/npc.tscn" id="7_8o7de"]
+[ext_resource type="Texture2D" uid="uid://dseyk0rqkbdlk" path="res://enemy_sprites/Screenshot 2024-02-28 at 11.38.36 AM.png" id="8_b4t21"]
+[ext_resource type="Texture2D" uid="uid://s884cwp4saya" path="res://enemy_sprites/fire_monkey.png" id="9_r05j8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t1owk"]
+size = Vector3(10, 0.2, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7a2nv"]
+albedo_texture = ExtResource("3_nwj2u")
+uv1_scale = Vector3(50, 50, 50)
+texture_filter = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3x583"]
+render_priority = 0
+shader = ExtResource("3_ul55h")
+shader_parameter/jitter = 0.5
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = true
+shader_parameter/alpha_scissor = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_1qdl6"]
+material = SubResource("ShaderMaterial_3x583")
+size = Vector3(10, 0.2, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pq20l"]
+size = Vector3(1.25, 1, 1.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_je7wo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_27tct"]
+margin = 0.0
+size = Vector3(0.5, 0.2, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mll3b"]
+size = Vector3(0.5, 0.2, 0.5)
+
+[node name="test scene" type="Node3D"]
+
+[node name="HeroController" parent="." instance=ExtResource("1_ten8w")]
+
+[node name="PartySprite1" parent="." instance=ExtResource("5_usmuh")]
+
+[node name="PartySprite2" parent="." instance=ExtResource("5_usmuh")]
+
+[node name="PartySprite3" parent="." instance=ExtResource("5_usmuh")]
+
+[node name="GameManager" type="Node3D" parent="."]
+script = ExtResource("6_na5ge")
+
+[node name="GUI" parent="." instance=ExtResource("4_5o3bb")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.783455, 0.38095, 0.490994, -0.621449, 0.480261, 0.618992, 0, -0.79008, 0.613004, 0, 1.9536, 2.6914)
+light_color = Color(1, 1, 0.780392, 1)
+light_energy = 0.25
+light_indirect_energy = 0.5
+light_bake_mode = 1
+shadow_enabled = true
+directional_shadow_mode = 0
+
+[node name="grasstest" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.06485, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="grasstest"]
+shape = SubResource("BoxShape3D_t1owk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="grasstest/CollisionShape3D"]
+material_override = SubResource("StandardMaterial3D_7a2nv")
+mesh = SubResource("BoxMesh_1qdl6")
+
+[node name="cubeA" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0541, -1.57907, -2.47946)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cubeA"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0710449, 0, 0.0990601)
+shape = SubResource("BoxShape3D_pq20l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="cubeA/CollisionShape3D"]
+mesh = SubResource("BoxMesh_je7wo")
+
+[node name="cubeB" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.963, -1.57907, -0.807926)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cubeB"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0012157, 0, -0.000736952)
+shape = SubResource("BoxShape3D_27tct")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="cubeB/CollisionShape3D"]
+mesh = SubResource("BoxMesh_mll3b")
+
+[node name="NPC001" parent="." instance=ExtResource("7_8o7de")]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.746842, 0, 0, 0, 0.739676, 0, 0, 0, 0.466753, 0.222854, -1.40689, -0.194778)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("8_b4t21")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.704612, -1.38535, -0.0811496)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("9_r05j8")

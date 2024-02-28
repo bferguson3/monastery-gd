@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccrwplds3di0s"]
+
+[ext_resource type="Script" path="res://src/monk.gd" id="1_hacjv"]
+
+[node name="Player1" type="Node3D"]
+script = ExtResource("1_hacjv")

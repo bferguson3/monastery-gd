@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="monastery"
-run/main_scene="res://spritetest.tscn"
+run/main_scene="res://scenes/spritetest.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Monastery="*res://monastery.gd"
+Monastery="*res://src/monastery.gd"
 
 [display]
 
