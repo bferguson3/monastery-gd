@@ -13,6 +13,7 @@ const JUMP_VELOCITY = 3.5;
 @onready var p4 = get_node("../PartySprite3")
 #@onready var statsWindow : Control = get_node("../GUI/StatBox")
 @onready var menuWindow : MenuWindow = get_node("../GUI").mainMenu #get_node("../GUI/MenuBox")
+@onready var GUI = get_node("../GUI")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity");
@@ -61,9 +62,9 @@ func _physics_process(delta):
 	
 	if Monastery.control_mode == Monastery.ControlModes.NORMAL:
 		# Handle jump.
-		if Input.is_action_just_pressed("ui_cancel") and is_on_floor():
-			velocity.y = JUMP_VELOCITY
-
+		#if Input.is_action_just_pressed("ui_cancel") and is_on_floor():
+		#	velocity.y = JUMP_VELOCITY
+		
 		# handle camera rotation 
 		var rotation_point = mySprite.global_transform.origin;
 		if Input.is_key_pressed(KEY_Q):
@@ -91,13 +92,7 @@ func _physics_process(delta):
 						stop_all_anim()
 						Monastery.control_mode = Monastery.ControlModes.WAITING_SCRIPT
 						GM.db.show()
-						Monastery.activeNPC = npc
-			if Monastery.activeNPC == null:
-				if(menuWindow == null):
-					menuWindow = get_node("../GUI").mainMenu
-				menuWindow.show();
-				velocity = Vector3(0.0, 0.0, 0.0)
-				Monastery.control_mode = Monastery.ControlModes.MENU_SELECT
+						Monastery.activeNPC = npc	
 			
 		## MOVEMENT 
 		if Input.is_action_pressed("ui_up"):
@@ -132,16 +127,43 @@ func _physics_process(delta):
 			velocity.z = move_toward(velocity.z, 0, SPEED)
 		
 		velocity = velocity.normalized();
+		
+		if Input.is_action_just_pressed("ui_cancel"):
+			if Monastery.activeNPC == null:
+				if(menuWindow == null): # error handling 
+					menuWindow = get_node("../GUI").mainMenu
+				menuWindow.show();
+				#stop_all_anim()
+				Monastery.control_mode = Monastery.ControlModes.MENU_BASE
+				menuWindow.myArrow.show();
+				velocity.x = 0
+				velocity.z = 0
+		
 		# END: normal control mode 
 	
 	## control mode menu:
 	
-	elif(Monastery.control_mode == Monastery.ControlModes.MENU_SELECT):
-		if Input.is_action_just_pressed("ui_accept"):
+	elif(Monastery.control_mode == Monastery.ControlModes.MENU_BASE):
+		# UDLR A B 
+		if Input.is_action_just_pressed("ui_down"):
+			menuWindow.move_sel_down()
+		elif Input.is_action_just_pressed("ui_up"):
+			menuWindow.move_sel_up()
+		elif Input.is_action_just_pressed("ui_right"):
+			menuWindow.move_sel_right()
+		elif Input.is_action_just_pressed("ui_left"):
+			menuWindow.move_sel_left()
+		
+		elif Input.is_action_just_pressed("ui_cancel"):
+			menuWindow.reset_sel()
 			menuWindow.hide()
+			menuWindow.idle_ctr = 0
 			Monastery.control_mode = Monastery.ControlModes.NORMAL
 	
 	## control mode else :
+	
+	elif (Monastery.control_mode == Monastery.ControlModes.SHOW_FATAL_ERROR):
+		pass 
 	
 	else: # WAITING_SCRIPT and ACCEPT_SCRIPT ... 
 		velocity = Vector3(0.0, 0.0, 0.0)

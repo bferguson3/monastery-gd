@@ -76,3 +76,21 @@ theme_override_colors/font_outline_color = Color(0.47451, 0.47451, 0.47451, 1)
 theme_override_constants/outline_size = 1
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
+
+[node name="ArrowContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 42.0
+offset_bottom = 38.0
+theme = SubResource("Theme_ro652")
+theme_override_styles/panel = SubResource("StyleBoxFlat_nvehh")
+
+[node name="ArrowText" type="RichTextLabel" parent="ArrowContainer"]
+layout_mode = 2
+theme = SubResource("Theme_5o7j5")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.47451, 0.47451, 0.47451, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/normal_font_size = 16
+text = "►"

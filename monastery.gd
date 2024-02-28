@@ -11,7 +11,7 @@ enum BODY_EQUIP { NONE, PRACTICE_ROBE };
 enum ARM_EQUIP { NONE, BANDAGE_WRAPS };
 enum LEG_EQUIP { NONE, STRAW_SANDAL};
 enum SCROLL_EQUIP { NONE, MASTER_SCROLL }
-enum MenuTypes { NONE, IDLE_STATUS, BASE_MENU, SUB_MENU }
+enum MenuTypes { NONE, IDLE_STATUS, BASE_MENU, SUB_MENU, ERROR_WINDOW }
 
 
 enum EQUIP_HEADINGS { 
@@ -105,7 +105,7 @@ func get_scroll_equipment(index):
 	return scroll_equipment[index]
 
 var rng;
-enum ControlModes { NORMAL, WAITING_SCRIPT, ACCEPT_SCRIPT, MENU_SELECT, MENU_BASE }
+enum ControlModes { NORMAL, WAITING_SCRIPT, ACCEPT_SCRIPT, MENU_BASE, SHOW_FATAL_ERROR }
 var control_mode
 var activeNPC : Node3D = null;
 @export var callbackColumnNo = 3; # TODO VERIFY

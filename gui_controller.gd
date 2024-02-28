@@ -4,6 +4,7 @@ var MenuWindow = preload("res://menu_box.tscn")
 
 @export var mainMenu : MenuWindow
 @export var statusMenu : MenuWindow 
+var ew : MenuWindow
 
 const body_icon = '♥'
 const struct_icon = '⌂'
@@ -36,7 +37,25 @@ func _ready():
 	menu2.columns = 1
 	menu2.setup([" Ben","♥  89/ 92", "⌂ 202/230", "≈  30/ 30"])
 	statusMenu = menu2;
+	statusMenu.hide()
+	
+	ew = MenuWindow.instantiate();
+	add_child(ew)
+	ew.hide();
 	
 	pass
 
 
+func show_error_window(txt:Array):
+	
+	ew.myType = Monastery.MenuTypes.ERROR_WINDOW;
+	ew.xPosition = 0.30
+	ew.yPosition = 0.40
+	ew.columns = 1
+	ew.rows = 2
+	ew.setup(txt)
+	ew.show()
+	
+
+	return ew;
+	

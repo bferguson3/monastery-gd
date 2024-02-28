@@ -32,17 +32,13 @@ func add_item_to(item : Monastery.Items, me : monk):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	party = []
 	_i = 0
 	var i = 8
 	while i > 0:
 		party.push_back(monk.new())
 		i-=1
 	party[0].make_new(Monastery.FORMS.CRANE)
-	
-	if(!add_item_to(Monastery.Items.HERB, party[0])):
-		print_debug("failed")
-		# todo: add menu UI somesuch here. 
-	
 	party[1].make_new(Monastery.FORMS.BOAR)
 	party[2].make_new(Monastery.FORMS.SNAKE)
 	party[3].make_new(Monastery.FORMS.DEER)
@@ -88,11 +84,16 @@ func _process(_delta):
 					Monastery.activeNPC = null
 					Monastery.control_mode = Monastery.ControlModes.NORMAL
 					db.hide()
+			#if(!add_item_to(Monastery.Items.HERB, party[0])):
+			#	print_debug("failed")
+			#	gui.show_error_window(["FATAL: could not add item to inventory.", "Why haven't you fixed this yet?"])
+			#	Monastery.control_mode = Monastery.ControlModes.SHOW_FATAL_ERROR
+	
 					
 
 
-func run_callback(item_callbacks):
-	match item_callbacks:
+func run_callback(cb):
+	match cb:
 		item_callbacks.NONE:
 			pass
 		item_callbacks.HEALBODY_A:
