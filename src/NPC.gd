@@ -11,7 +11,7 @@ extends AnimatedSprite3D
 @export var talkBubbleOpen : bool = false
 var stopped
 var change_facing : bool
-var pscale : float = 4.0
+@export var pscale : float = 8.0 # 4 for 720 FIXME
 
 func face_hero():
 	facing = (heroSprite.global_transform.origin - global_transform.origin).normalized()
@@ -21,7 +21,7 @@ func face_hero():
 func _process(_delta):
 	if(myTalkBubble.is_visible()):
 		var relpos : Vector2 = myCam.unproject_position(self.global_transform.origin)
-		myTalkBubble.global_transform.origin = myCam.project_position(Vector2(relpos.x, relpos.y - (24.0 * pscale)), 1.25)
+		myTalkBubble.global_transform.origin = myCam.project_position(Vector2(relpos.x, relpos.y - (20.0 * pscale)), 1.25)
 		talkBubbleOpen = true 
 	else:
 		talkBubbleOpen = false 

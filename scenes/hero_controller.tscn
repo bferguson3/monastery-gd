@@ -1,9 +1,10 @@
-[gd_scene load_steps=35 format=3 uid="uid://boa0u3fu56gcx"]
+[gd_scene load_steps=37 format=3 uid="uid://boa0u3fu56gcx"]
 
 [ext_resource type="Script" path="res://src/HeroController.gd" id="1_twxjk"]
 [ext_resource type="Texture2D" uid="uid://11chfeeku7j0" path="res://world_sprites/monk_elder-sheet2.png" id="2_giov2"]
 [ext_resource type="Texture2D" uid="uid://c08gxsydujddt" path="res://world_sprites/monk_hero-sheet2.png" id="3_38n0w"]
 [ext_resource type="Texture2D" uid="uid://doj5q2hkomcyh" path="res://world_sprites/monk_hero-sheet.png" id="4_61sob"]
+[ext_resource type="Shader" path="res://scenes/pixelizer.gdshader" id="5_we4ml"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xy7vt"]
 atlas = ExtResource("2_giov2")
@@ -251,12 +252,18 @@ background_mode = 2
 sky = SubResource("Sky_viei1")
 ambient_light_sky_contribution = 0.5
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a2tv8"]
+shader = ExtResource("5_we4ml")
+shader_parameter/amount = 0.0
+shader_parameter/itsOver = false
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_14qn6"]
 
 [node name="HeroController" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.92623, 0)
 script = ExtResource("1_twxjk")
 SPEED = 3.0
+camera_distance = 0.6
 
 [node name="HeroSprite" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.0134923, 2.08165e-12)
@@ -272,19 +279,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.135, 2.08165e-
 shape = SubResource("BoxShape3D_8tnyo")
 
 [node name="SVC" type="SubViewportContainer" parent="HeroCollider"]
-offset_right = 1280.0
-offset_bottom = 720.0
+offset_right = 1920.0
+offset_bottom = 1080.0
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="HeroCollider/SVC"]
 handle_input_locally = false
-size = Vector2i(1280, 720)
+size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
 [node name="MainCamera" type="Camera3D" parent="HeroCollider/SVC/SubViewport"]
-transform = Transform3D(1, -6.79356e-16, 1.11249e-16, 1.11249e-16, 0.318959, 0.947769, -6.79356e-16, -0.947769, 0.318959, 2.08165e-12, -0.92623, 1.08808)
+transform = Transform3D(1, -6.79356e-16, 1.11248e-16, 1.11249e-16, 0.318959, 0.947769, -6.79356e-16, -0.947769, 0.318959, 2.08165e-12, -0.92623, 1.08808)
 environment = SubResource("Environment_q804y")
 current = true
+
+[node name="BattleViewContainer" type="SubViewportContainer" parent="HeroCollider"]
+visible = false
+offset_right = 1920.0
+offset_bottom = 1080.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="HeroCollider/BattleViewContainer"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 0
+
+[node name="BattleCamera" type="Camera3D" parent="HeroCollider/BattleViewContainer/SubViewport"]
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 2.08165e-12, -1.75, 1)
+visible = false
+environment = SubResource("Environment_q804y")
+
+[node name="EffectLayer" type="SubViewportContainer" parent="HeroCollider"]
+visible = false
+material = SubResource("ShaderMaterial_a2tv8")
+anchors_preset = -1
+anchor_left = -0.062
+anchor_top = -0.036
+anchor_right = -0.062
+anchor_bottom = -0.036
+offset_left = 80.36
+offset_top = 27.92
+offset_right = 2000.36
+offset_bottom = 1107.92
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="HeroCollider/EffectLayer"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 0
 
 [node name="InteractArea" type="Area3D" parent="."]
 

@@ -19,7 +19,7 @@ const JUMP_VELOCITY = 3.5;
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity");
 
 var rotation_around_point = 90;
-var camera_distance = 0.75;
+@export var camera_distance = 0.75;
 var camera_changed = true;
 
 var stopped = false
@@ -95,17 +95,8 @@ func _physics_process(delta):
 						Monastery.activeNPC = npc	
 			
 		## MOVEMENT 
-		if Input.is_action_pressed("ui_up"):
-			idle_counter = 0.0
-			mySprite.play("hero2_walk_up");
-			aspd = 1.0
-			camera_changed = true
-		elif Input.is_action_pressed("ui_down"):
-			idle_counter = 0.0
-			mySprite.play("hero2_walk_down");
-			aspd = 1.0
-			camera_changed = true
-		elif Input.is_action_pressed("ui_right"):
+		
+		if Input.is_action_pressed("ui_right"):
 			idle_counter = 0.0
 			mySprite.play("hero2_walk_right");
 			aspd = 1.0
@@ -113,6 +104,16 @@ func _physics_process(delta):
 		elif Input.is_action_pressed("ui_left"):
 			idle_counter = 0.0
 			mySprite.play("hero2_walk_left");
+			aspd = 1.0
+			camera_changed = true
+		elif Input.is_action_pressed("ui_up"):
+			idle_counter = 0.0
+			mySprite.play("hero2_walk_up");
+			aspd = 1.0
+			camera_changed = true
+		elif Input.is_action_pressed("ui_down"):
+			idle_counter = 0.0
+			mySprite.play("hero2_walk_down");
 			aspd = 1.0
 			camera_changed = true
 	
@@ -153,6 +154,8 @@ func _physics_process(delta):
 			menuWindow.move_sel_right()
 		elif Input.is_action_just_pressed("ui_left"):
 			menuWindow.move_sel_left()
+		elif Input.is_action_just_pressed("ui_accept"):
+			menuWindow.menu_select()
 		
 		elif Input.is_action_just_pressed("ui_cancel"):
 			menuWindow.reset_sel()

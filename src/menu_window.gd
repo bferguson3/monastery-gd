@@ -10,13 +10,14 @@ var myY : int;
 var myWidth : int;
 var myHeight: int;
 
-var fontSize : int = 14;
+@export var fontSize : int = 14;
 var fontScale : float;
 
 @export var columns : int = 2;
 var rows : int = 0
 var myMenu;
 @export var items_list = [];
+var texts_list=[];
 var myFunctions : Array = [];
 var screenRatioY : float;
 var screenRatioX : float;
@@ -29,6 +30,7 @@ var rowLens = []
 var root;
 var idle_ctr : float = 0
 const idle_time : float = 2.0
+var resolution_scale : float = 0.25; # TODO FIXME
 
 var myType = Monastery.MenuTypes.NONE
 var myArrow;
@@ -59,7 +61,7 @@ func setup(ilist:Array):
 	
 	myX = xPosition * DisplayServer.window_get_size()[0] / (screenRatioX)
 	myY = yPosition * DisplayServer.window_get_size()[1] / (screenRatioX)
-	
+
 	# Apply text !
 	var text = get_node("TextContainer/DialogueText")
 	text.clear()
@@ -82,6 +84,13 @@ func setup(ilist:Array):
 			text.add_text(" " + _i + "\n")
 			
 	
+	# add each item in items_list as a TC
+	# when you hit the column edge, go to next column.
+	# space each appropriately
+	
+		
+		
+
 	# go by each column and find the longest 
 	var cio = 0
 	while cio < columns:
@@ -102,7 +111,7 @@ func setup(ilist:Array):
 		text_width /= rows;
 	var tc = get_node("TextContainer")
 	var mySz = tc.get_size();
-	tc.set_position(Vector2(0 + (screenRatioX), 0 + (screenRatioY + 1)))
+	tc.set_position(Vector2(0 + (screenRatioX) * resolution_scale, 0 + (screenRatioY + 1) * resolution_scale))
 	
 	set_position(Vector2(myX, myY))
 	myArrow.hide();
@@ -147,33 +156,36 @@ func _process(delta):
 	pass
 
 func move_sel_down():
-	myArrow.position.y += my_txt_size
+	myArrow.position.y += my_txt_size * resolution_scale;
 	selectorIndex += 2
 	if(selectorIndex >= (columns*rows)):
 		selectorIndex -= (columns*rows)
-		myArrow.position.y -= (my_txt_size * rows)	
+		myArrow.position.y -= (my_txt_size * rows * resolution_scale)	
 func move_sel_up():
-	myArrow.position.y -= my_txt_size
+	myArrow.position.y -= my_txt_size * resolution_scale;
 	selectorIndex -= 2
 	if(selectorIndex < 0):
 		selectorIndex += (columns*(rows))
-		myArrow.position.y += (my_txt_size * (rows))
+		myArrow.position.y += (my_txt_size * (rows) * resolution_scale)
 func move_sel_right():
 	var width = get_node("PanelBG").get_size().x
-	myArrow.position.x += (width * 0.8 / columns)
+	myArrow.position.x += (width * 0.8 / columns) * resolution_scale;
 	selectorIndex += 1 
 	if ( selectorIndex % columns == 0 ):
 		selectorIndex -= (columns)
-		myArrow.position.x = 8
+		myArrow.position.x = 8 * resolution_scale;
 func move_sel_left():
 	var width = get_node("PanelBG").get_size().x
-	myArrow.position.x -= (width * 0.8 / columns)
+	myArrow.position.x -= (width * 0.8 / columns) * resolution_scale;
 	selectorIndex -= 1 
 	if (selectorIndex % (columns) != 0): # TODO FIXME BUG WITH MORE THAN 2 COLMS?
 		selectorIndex += columns
-		myArrow.position.x += (width * 0.8 / columns) * columns
+		myArrow.position.x += (width * 0.8 / columns) * columns * resolution_scale;
 	
+func menu_select():
+	print_debug("menu index: ", selectorIndex)
+
 func reset_sel():
 	selectorIndex = 0
-	myArrow.position.x = my_txt_size/2;
-	myArrow.position.y = my_txt_size/2 - 4;
+	myArrow.position.x = (my_txt_size/2) * resolution_scale;
+	myArrow.position.y = (my_txt_size/2) * resolution_scale;

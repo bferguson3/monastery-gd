@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dymdvvhcxe8xr"]
+[gd_scene load_steps=22 format=3 uid="uid://dymdvvhcxe8xr"]
 
 [ext_resource type="PackedScene" uid="uid://boa0u3fu56gcx" path="res://scenes/hero_controller.tscn" id="1_ten8w"]
 [ext_resource type="Texture2D" uid="uid://bssjoyltu5g8s" path="res://grass_tex.png" id="3_nwj2u"]
@@ -8,7 +8,11 @@
 [ext_resource type="Script" path="res://src/GameManager.gd" id="6_na5ge"]
 [ext_resource type="PackedScene" uid="uid://vcnv17rov42" path="res://scenes/npc.tscn" id="7_8o7de"]
 [ext_resource type="Texture2D" uid="uid://dseyk0rqkbdlk" path="res://enemy_sprites/Screenshot 2024-02-28 at 11.38.36 AM.png" id="8_b4t21"]
-[ext_resource type="Texture2D" uid="uid://s884cwp4saya" path="res://enemy_sprites/fire_monkey.png" id="9_r05j8"]
+[ext_resource type="Texture2D" uid="uid://bvnp022jdwsok" path="res://enemy_sprites/fire_monkey2.png" id="9_areor"]
+[ext_resource type="Texture2D" uid="uid://3d2g1b2iouv" path="res://enemy_sprites/arab_hench2.png" id="10_gwtxy"]
+[ext_resource type="Texture2D" uid="uid://dpsp0xo4fk1c4" path="res://enemy_sprites/cheongsam_staff2.png" id="11_lcau3"]
+[ext_resource type="Texture2D" uid="uid://ia45itrblyv4" path="res://enemy_sprites/mushroom_spear.png" id="12_7ylmp"]
+[ext_resource type="Texture2D" uid="uid://d1dnms6q63hnq" path="res://world_sprites/tree01.png" id="13_3b8uk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t1owk"]
 size = Vector3(10, 0.2, 10)
@@ -101,12 +105,91 @@ mesh = SubResource("BoxMesh_mll3b")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.746842, 0, 0, 0, 0.739676, 0, 0, 0, 0.466753, 0.222854, -1.40689, -0.194778)
+visible = false
 billboard = 1
 texture_filter = 0
 texture = ExtResource("8_b4t21")
 
 [node name="Sprite3D2" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.704612, -1.38535, -0.0811496)
+transform = Transform3D(0.732642, 0, 0, 0, 0.607607, 0, 0, 0, 0.609455, 0.575522, -1.58317, 0)
+visible = false
 billboard = 1
 texture_filter = 0
-texture = ExtResource("9_r05j8")
+texture = ExtResource("9_areor")
+
+[node name="Sprite3D3" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15662, -1.52302, 0.000251532)
+visible = false
+billboard = 1
+texture_filter = 0
+texture = ExtResource("10_gwtxy")
+
+[node name="Sprite3D4" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.365463, -1.5606, 0)
+visible = false
+billboard = 1
+texture_filter = 0
+texture = ExtResource("11_lcau3")
+
+[node name="Sprite3D5" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.462106, -1.75129, -0.00221777)
+visible = false
+billboard = 1
+texture_filter = 0
+texture = ExtResource("12_7ylmp")
+
+[node name="Sprite3D12" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00899538, -1.75035, -0.00221777)
+visible = false
+billboard = 1
+texture_filter = 0
+texture = ExtResource("12_7ylmp")
+
+[node name="Sprite3D13" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.452485, -1.74858, -0.00221777)
+visible = false
+billboard = 1
+texture_filter = 0
+texture = ExtResource("12_7ylmp")
+
+[node name="Sprite3D6" type="Sprite3D" parent="."]
+transform = Transform3D(1.33612, 0, 0, 0, 1.27319, 0, 0, 0, 1.01591, 1.20242, -1.7136, -1.22877)
+visible = false
+billboard = 1
+texture_filter = 0
+texture = ExtResource("13_3b8uk")
+
+[node name="Sprite3D8" type="Sprite3D" parent="."]
+transform = Transform3D(1.33612, 0, 0, 0, 1.12943, 0, 0, 0, 1.00865, -1.61243, -1.7136, -0.926215)
+visible = false
+billboard = 1
+texture_filter = 0
+texture = ExtResource("13_3b8uk")
+
+[node name="Sprite3D7" type="Sprite3D" parent="."]
+transform = Transform3D(1.33612, 0, 0, 0, 1.12943, 0, 0, 0, 1.00865, -1.0838, -1.7136, -1.91689)
+visible = false
+billboard = 1
+texture_filter = 0
+texture = ExtResource("13_3b8uk")
+
+[node name="Sprite3D9" type="Sprite3D" parent="."]
+transform = Transform3D(1.86442, 0, 0, 0, 1.6893, 0, 0, 0, 1.00865, -1.56522, -1.63482, -0.172815)
+visible = false
+billboard = 1
+texture_filter = 0
+texture = ExtResource("13_3b8uk")
+
+[node name="Sprite3D11" type="Sprite3D" parent="."]
+transform = Transform3D(1.86442, 0, 0, 0, 1.6893, 0, 0, 0, 1.00865, 1.97692, -1.61182, -0.383607)
+visible = false
+billboard = 1
+texture_filter = 0
+texture = ExtResource("13_3b8uk")
+
+[node name="Sprite3D10" type="Sprite3D" parent="."]
+transform = Transform3D(1.51499, 0, 0, 0, 1.74967, 0, 0, 0, 1.00865, 0.343988, -1.61953, -0.85848)
+visible = false
+billboard = 1
+texture_filter = 0
+texture = ExtResource("13_3b8uk")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bqnurnr6bwxjc"]
+[gd_scene load_steps=11 format=3 uid="uid://bqnurnr6bwxjc"]
 
 [ext_resource type="FontFile" uid="uid://b0d5k3k4xpo3r" path="res://Ac437_IBM_Model3x_Alt1.ttf" id="1_5pfap"]
 [ext_resource type="Script" path="res://src/gui_controller.gd" id="1_6rood"]
@@ -36,25 +36,21 @@ bg_color = Color(0.69804, 0.558867, 0.580144, 0)
 skew = Vector2(2.08165e-12, 2.08165e-12)
 
 [sub_resource type="Theme" id="Theme_5o7j5"]
-default_base_scale = 9.0
-default_font = ExtResource("1_5pfap")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2cfkd"]
-bg_color = Color(1, 1, 1, 0.862745)
 
 [node name="GUI" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 60.0
 offset_bottom = 65.0
-scale = Vector2(3, 3)
+scale = Vector2(18, 18)
 script = ExtResource("1_6rood")
 
 [node name="DialogueBox" type="Control" parent="."]
 visible = false
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 34.0
+offset_bottom = 33.0
+scale = Vector2(0.25, 0.25)
 
 [node name="PanelBG" type="PanelContainer" parent="DialogueBox"]
 layout_mode = 0
@@ -84,222 +80,310 @@ theme = SubResource("Theme_ro652")
 theme_override_styles/panel = SubResource("StyleBoxFlat_nvehh")
 
 [node name="DialogueText" type="RichTextLabel" parent="DialogueBox/TextContainer"]
+texture_filter = 6
 layout_mode = 2
-theme = SubResource("Theme_5o7j5")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0.47451, 0.47451, 0.47451, 1)
-theme_override_constants/outline_size = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
 theme_override_fonts/normal_font = ExtResource("1_5pfap")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/normal_font_size = 22
 text = "Bent: This is a test of the Godot GUI system.
 Line two
 Line three
 Line four! Here we go."
 
 [node name="CombatGroup" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 offset_right = 426.0
 offset_bottom = 239.0
+scale = Vector2(0.25, 0.25)
 
 [node name="CombatBox" type="Control" parent="CombatGroup"]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_top = 0.333339
+offset_right = 427.0
+offset_bottom = 241.333
 
 [node name="PanelBG" type="PanelContainer" parent="CombatGroup/CombatBox"]
 layout_mode = 0
-offset_left = 7.0
-offset_top = 182.0
+offset_left = 8.0
+offset_top = 159.0
 offset_right = 420.0
-offset_bottom = 232.0
+offset_bottom = 238.0
 theme = SubResource("Theme_txbtm")
 theme_override_styles/panel = SubResource("StyleBoxFlat_288sf")
 
 [node name="PanelBorder" type="Panel" parent="CombatGroup/CombatBox"]
 layout_mode = 0
 offset_left = 10.0
-offset_top = 184.0
+offset_top = 160.0
 offset_right = 417.0
-offset_bottom = 230.0
+offset_bottom = 236.0
 theme = SubResource("Theme_7ivfm")
 theme_override_styles/panel = SubResource("StyleBoxFlat_p72l8")
 
 [node name="TextContainer" type="PanelContainer" parent="CombatGroup/CombatBox"]
 layout_mode = 0
 offset_left = 18.0
-offset_top = 187.667
-offset_right = 412.0
-offset_bottom = 226.667
+offset_top = 165.0
+offset_right = 419.0
+offset_bottom = 242.0
 theme = SubResource("Theme_ro652")
 theme_override_styles/panel = SubResource("StyleBoxFlat_nvehh")
 
 [node name="DialogueText" type="RichTextLabel" parent="CombatGroup/CombatBox/TextContainer"]
 layout_mode = 2
-theme = SubResource("Theme_5o7j5")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.47451, 0.47451, 0.47451, 1)
 theme_override_constants/outline_size = 1
 theme_override_fonts/normal_font = ExtResource("1_5pfap")
 theme_override_font_sizes/normal_font_size = 18
 text = "Slimey Gooper slimes nearby!
-The entire party takes 132 damage!!"
+The entire party takes 132 damage!!
+ 
+                        ▼"
 
-[node name="MenuBox" parent="." instance=ExtResource("3_cedxm")]
-visible = false
-script = null
-
-[node name="StatBox" type="Control" parent="."]
-visible = false
+[node name="PartyStatusBox" type="Control" parent="CombatGroup"]
 anchors_preset = 0
-offset_left = 122.0
-offset_top = 185.0
-offset_right = 424.0
-offset_bottom = 264.0
+offset_right = 427.0
+offset_bottom = 241.0
 
-[node name="PanelBG" type="PanelContainer" parent="StatBox"]
-visible = false
+[node name="PanelBG" type="PanelContainer" parent="CombatGroup/PartyStatusBox"]
 layout_mode = 0
-offset_left = 5.0
-offset_top = -22.3333
-offset_right = 299.0
-offset_bottom = 47.6667
+offset_left = 10.0
+offset_top = 1.0
+offset_right = 254.0
+offset_bottom = 44.0
 theme = SubResource("Theme_txbtm")
 theme_override_styles/panel = SubResource("StyleBoxFlat_288sf")
 
-[node name="PanelBorder" type="Panel" parent="StatBox"]
-visible = false
+[node name="PanelBorder" type="Panel" parent="CombatGroup/PartyStatusBox"]
 layout_mode = 0
-offset_left = 7.0
-offset_top = -20.3333
-offset_right = 295.0
-offset_bottom = 44.6667
+offset_left = 9.0
+offset_top = 2.0
+offset_right = 254.0
+offset_bottom = 43.0
 theme = SubResource("Theme_7ivfm")
 theme_override_styles/panel = SubResource("StyleBoxFlat_p72l8")
 
-[node name="Player1StatBox" type="PanelContainer" parent="StatBox"]
-visible = false
+[node name="TextContainer" type="PanelContainer" parent="CombatGroup/PartyStatusBox"]
 layout_mode = 0
-offset_left = 13.6667
-offset_top = -17.0
-offset_right = 145.667
-offset_bottom = 56.0
+offset_left = 17.0
+offset_top = 6.0
+offset_right = 412.0
+offset_bottom = 229.0
 theme = SubResource("Theme_ro652")
 theme_override_styles/panel = SubResource("StyleBoxFlat_nvehh")
 
-[node name="DialogueText" type="RichTextLabel" parent="StatBox/Player1StatBox"]
-visible = false
-texture_filter = 1
+[node name="DialogueText" type="RichTextLabel" parent="CombatGroup/PartyStatusBox/TextContainer"]
 layout_mode = 2
+theme = SubResource("Theme_5o7j5")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0.435294, 0.435294, 0.435294, 1)
-theme_override_constants/shadow_offset_y = -1
+theme_override_colors/font_outline_color = Color(0.47451, 0.47451, 0.47451, 1)
 theme_override_constants/outline_size = 1
 theme_override_fonts/normal_font = ExtResource("1_5pfap")
-theme_override_font_sizes/normal_font_size = 14
-text = "Bent
-B 999/999
-C 999/999
-S 999/999"
+theme_override_font_sizes/normal_font_size = 16
+text = "John   ♥ 89/ 92    Jacob  ♥ 89/ 92  
+Minty  ♥ 89/ 92    Roux   ♥ 89/ 92 "
 
-[node name="Player2StatBox" type="PanelContainer" parent="StatBox"]
+[node name="StatusWin1" type="Control" parent="CombatGroup"]
 visible = false
+anchors_preset = 0
+offset_right = 427.0
+offset_bottom = 241.0
+
+[node name="PanelBG" type="PanelContainer" parent="CombatGroup/StatusWin1"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 9.0
+offset_top = 3.0
+offset_right = 86.0
+offset_bottom = 68.0
+theme = SubResource("Theme_txbtm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_288sf")
+
+[node name="PanelBorder" type="Panel" parent="CombatGroup/StatusWin1"]
 layout_mode = 0
-offset_left = 85.6667
-offset_top = -17.0
-offset_right = 328.667
-offset_bottom = 56.0
+offset_left = 9.0
+offset_top = 2.0
+offset_right = 87.0
+offset_bottom = 68.0
+theme = SubResource("Theme_7ivfm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_p72l8")
+
+[node name="TextContainer" type="PanelContainer" parent="CombatGroup/StatusWin1"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 6.0
+offset_right = 412.0
+offset_bottom = 229.0
 theme = SubResource("Theme_ro652")
 theme_override_styles/panel = SubResource("StyleBoxFlat_nvehh")
 
-[node name="DialogueText" type="RichTextLabel" parent="StatBox/Player2StatBox"]
-visible = false
-texture_filter = 1
+[node name="DialogueText" type="RichTextLabel" parent="CombatGroup/StatusWin1/TextContainer"]
 layout_mode = 2
+theme = SubResource("Theme_5o7j5")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0.435294, 0.435294, 0.435294, 1)
-theme_override_constants/shadow_offset_y = -1
+theme_override_colors/font_outline_color = Color(0.47451, 0.47451, 0.47451, 1)
+theme_override_constants/line_separation = -2
 theme_override_constants/outline_size = 1
 theme_override_fonts/normal_font = ExtResource("1_5pfap")
-theme_override_font_sizes/normal_font_size = 14
-text = "Bent
-B 999/999
-C 999/999
-S 999/999"
+theme_override_font_sizes/normal_font_size = 16
+text = " Ben
+♥  89/ 92
+⌂ 202/230
+≈  30/ 30"
 
-[node name="Player3StatBox" type="PanelContainer" parent="StatBox"]
+[node name="StatusWin2" type="Control" parent="CombatGroup"]
 visible = false
+anchors_preset = 0
+offset_left = 55.3333
+offset_right = 482.333
+offset_bottom = 241.0
+
+[node name="PanelBG" type="PanelContainer" parent="CombatGroup/StatusWin2"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 9.0
+offset_top = 3.0
+offset_right = 86.0
+offset_bottom = 68.0
+theme = SubResource("Theme_txbtm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_288sf")
+
+[node name="PanelBorder" type="Panel" parent="CombatGroup/StatusWin2"]
 layout_mode = 0
-offset_left = 155.667
-offset_top = -18.0
-offset_right = 446.667
-offset_bottom = 55.0
+offset_left = 9.0
+offset_top = 2.0
+offset_right = 87.0
+offset_bottom = 68.0
+theme = SubResource("Theme_7ivfm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_p72l8")
+
+[node name="TextContainer" type="PanelContainer" parent="CombatGroup/StatusWin2"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 6.0
+offset_right = 412.0
+offset_bottom = 229.0
 theme = SubResource("Theme_ro652")
 theme_override_styles/panel = SubResource("StyleBoxFlat_nvehh")
 
-[node name="DialogueText" type="RichTextLabel" parent="StatBox/Player3StatBox"]
-visible = false
-texture_filter = 1
+[node name="DialogueText" type="RichTextLabel" parent="CombatGroup/StatusWin2/TextContainer"]
 layout_mode = 2
+theme = SubResource("Theme_5o7j5")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0.435294, 0.435294, 0.435294, 1)
-theme_override_constants/shadow_offset_y = -1
+theme_override_colors/font_outline_color = Color(0.47451, 0.47451, 0.47451, 1)
+theme_override_constants/line_separation = -2
 theme_override_constants/outline_size = 1
 theme_override_fonts/normal_font = ExtResource("1_5pfap")
-theme_override_font_sizes/normal_font_size = 14
-text = "Bent
-B 999/999
-C 999/999
-S 999/999"
+theme_override_font_sizes/normal_font_size = 16
+text = " Ben
+♥  89/ 92
+⌂ 202/230
+≈  30/ 30"
 
-[node name="Player4StatBox" type="PanelContainer" parent="StatBox"]
+[node name="StatusWin3" type="Control" parent="CombatGroup"]
 visible = false
+anchors_preset = 0
+offset_left = 110.0
+offset_right = 537.0
+offset_bottom = 241.0
+
+[node name="PanelBG" type="PanelContainer" parent="CombatGroup/StatusWin3"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 9.0
+offset_top = 3.0
+offset_right = 86.0
+offset_bottom = 68.0
+theme = SubResource("Theme_txbtm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_288sf")
+
+[node name="PanelBorder" type="Panel" parent="CombatGroup/StatusWin3"]
 layout_mode = 0
-offset_left = 228.667
-offset_top = -18.0
-offset_right = 458.667
-offset_bottom = 54.0
+offset_left = 9.0
+offset_top = 2.0
+offset_right = 87.0
+offset_bottom = 68.0
+theme = SubResource("Theme_7ivfm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_p72l8")
+
+[node name="TextContainer" type="PanelContainer" parent="CombatGroup/StatusWin3"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 6.0
+offset_right = 412.0
+offset_bottom = 229.0
 theme = SubResource("Theme_ro652")
 theme_override_styles/panel = SubResource("StyleBoxFlat_nvehh")
 
-[node name="DialogueText" type="RichTextLabel" parent="StatBox/Player4StatBox"]
-visible = false
-texture_filter = 1
+[node name="DialogueText" type="RichTextLabel" parent="CombatGroup/StatusWin3/TextContainer"]
 layout_mode = 2
+theme = SubResource("Theme_5o7j5")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0.435294, 0.435294, 0.435294, 1)
-theme_override_constants/shadow_offset_y = -1
+theme_override_colors/font_outline_color = Color(0.47451, 0.47451, 0.47451, 1)
+theme_override_constants/line_separation = -2
 theme_override_constants/outline_size = 1
 theme_override_fonts/normal_font = ExtResource("1_5pfap")
-theme_override_font_sizes/normal_font_size = 14
-text = "Bent
-B 999/999
-C 999/999
-S 999/999"
+theme_override_font_sizes/normal_font_size = 16
+text = " Ben
+♥  89/ 92
+⌂ 202/230
+≈  30/ 30"
 
-[node name="StatDivider1" type="PanelContainer" parent="StatBox"]
+[node name="StatusWin4" type="Control" parent="CombatGroup"]
 visible = false
-layout_mode = 0
-offset_left = 80.0
-offset_top = -11.3333
-offset_right = 81.0
-offset_bottom = 37.6667
-theme_override_styles/panel = SubResource("StyleBoxFlat_2cfkd")
+anchors_preset = 0
+offset_left = 166.333
+offset_right = 593.333
+offset_bottom = 241.0
 
-[node name="StatDivider2" type="PanelContainer" parent="StatBox"]
-visible = false
-layout_mode = 0
-offset_left = 150.0
-offset_top = -12.3333
-offset_right = 151.0
-offset_bottom = 37.6667
-theme_override_styles/panel = SubResource("StyleBoxFlat_2cfkd")
+[node name="PanelBG" type="PanelContainer" parent="CombatGroup/StatusWin4"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 9.0
+offset_top = 3.0
+offset_right = 86.0
+offset_bottom = 68.0
+theme = SubResource("Theme_txbtm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_288sf")
 
-[node name="StatDivider3" type="PanelContainer" parent="StatBox"]
-visible = false
+[node name="PanelBorder" type="Panel" parent="CombatGroup/StatusWin4"]
 layout_mode = 0
-offset_left = 222.0
-offset_top = -12.3333
-offset_right = 223.0
-offset_bottom = 38.6667
-theme_override_styles/panel = SubResource("StyleBoxFlat_2cfkd")
+offset_left = 9.0
+offset_top = 2.0
+offset_right = 87.0
+offset_bottom = 68.0
+theme = SubResource("Theme_7ivfm")
+theme_override_styles/panel = SubResource("StyleBoxFlat_p72l8")
+
+[node name="TextContainer" type="PanelContainer" parent="CombatGroup/StatusWin4"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 6.0
+offset_right = 412.0
+offset_bottom = 229.0
+theme = SubResource("Theme_ro652")
+theme_override_styles/panel = SubResource("StyleBoxFlat_nvehh")
+
+[node name="DialogueText" type="RichTextLabel" parent="CombatGroup/StatusWin4/TextContainer"]
+layout_mode = 2
+theme = SubResource("Theme_5o7j5")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.47451, 0.47451, 0.47451, 1)
+theme_override_constants/line_separation = -2
+theme_override_constants/outline_size = 1
+theme_override_fonts/normal_font = ExtResource("1_5pfap")
+theme_override_font_sizes/normal_font_size = 16
+text = " Ben
+♥  89/ 92
+⌂ 202/230
+≈  30/ 30"
+
+[node name="MenuBox" parent="." instance=ExtResource("3_cedxm")]
+visible = false
+offset_right = 427.0
+offset_bottom = 267.0
+scale = Vector2(0.25, 0.25)
+script = null

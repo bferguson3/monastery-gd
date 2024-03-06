@@ -19,10 +19,10 @@ func _ready():
 	var menu = MenuWindow.instantiate()
 	add_child(menu)
 	
-	menu.xPosition = 0.04
-	menu.yPosition = 0.05
+	menu.xPosition = 0.01
+	menu.yPosition = 0.01 
 	menu.columns = 2;
-	menu.setup([" Items", " Skills", " Status", "Scrolls", " Equip", " Party", " Map ", "  System"])
+	menu.setup(["Items", "Skills ", "Stats", "Scrolls ", "Equip", "Party", "Map  ", "System"])
 	
 	menu.link_function(0, _ITEMS);
 	#menu.myFunctions[0].call();
