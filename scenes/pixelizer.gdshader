@@ -4,22 +4,23 @@ uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_n
 uniform float amount = 0;
 uniform bool itsOver = false;
 
+uniform float asdf = 100.0f;
+uniform bool darken = false;
 
 void fragment()
-{	float amt;
-	if(TIME < 4.0f){
-		amt = (127.0f / TIME) ;
-	} 
-	else { 
-		amt = (TIME * 127.0f);
-	}
+{	float amt = amount;
+	//amt = (asdf) / TIME;
 	vec2 grid_uv = floor(SCREEN_UV * float(amt)) / float(amt);
 	
 	vec4 text = texture(screen_texture, grid_uv);
 	
-	float rv = sin(TIME / 1.0f) + 0.5;
-	float gv = sin(TIME / 3.0f )+ 0.5f;
-	float bv = sin(TIME / 7.0f) + 0.5f;
+	text.r -= (TIME/10.0);
+	text.g -= (TIME/10.0);
+	text.b -= (TIME/10.0);
 	
-	COLOR = vec4(text.r * rv, text.g * gv, text.b * bv, text.a);
+	if(darken){
+		text = vec4(0.0, 0.0, 0.0, 1.0);
+	}
+	
+	COLOR = text;
 }

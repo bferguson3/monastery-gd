@@ -6,6 +6,8 @@ var MenuWindow = preload("res://scenes/menu_box.tscn")
 @export var statusMenu : MenuWindow 
 var ew : MenuWindow
 
+@export var resolution_scale : Vector2 = Vector2(12,12)# = 3; # 1 for 320, 12 for 720p, 18 for 1080p
+
 const body_icon = '♥'
 const struct_icon = '⌂'
 const breath_icon = '≈'
@@ -22,7 +24,7 @@ func _ready():
 	menu.xPosition = 0.01
 	menu.yPosition = 0.01 
 	menu.columns = 2;
-	menu.setup(["Items", "Skills ", "Stats", "Scrolls ", "Equip", "Party", "Map  ", "System"])
+	menu.setup([" Items", "Skills ", " Stats", "Scrolls ", " Equip", "Party", " Map  ", "System"])
 	
 	menu.link_function(0, _ITEMS);
 	#menu.myFunctions[0].call();
@@ -42,6 +44,10 @@ func _ready():
 	ew = MenuWindow.instantiate();
 	add_child(ew)
 	ew.hide();
+	
+	# finally, set the scale based on the resolution...
+	self.set_scale(Vector2(resolution_scale.x, resolution_scale.y))
+	
 	
 	pass
 

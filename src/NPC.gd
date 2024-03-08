@@ -11,7 +11,7 @@ extends AnimatedSprite3D
 @export var talkBubbleOpen : bool = false
 var stopped
 var change_facing : bool
-@export var pscale : float = 8.0 # 4 for 720 FIXME
+@export var pscale : float = 6.0 # 6? for 720 FIXME
 
 func face_hero():
 	facing = (heroSprite.global_transform.origin - global_transform.origin).normalized()

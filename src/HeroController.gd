@@ -15,6 +15,10 @@ const JUMP_VELOCITY = 3.5;
 @onready var menuWindow : MenuWindow = get_node("../GUI").mainMenu #get_node("../GUI/MenuBox")
 @onready var GUI = get_node("../GUI")
 
+@onready var myScreen = get_node("HeroCollider/SVC")
+@onready var myBattleScreen = get_node("HeroCollider/BattleViewContainer")
+@onready var myTransition = preload("res://scenes/effect_layer.tscn")
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity");
 
@@ -30,6 +34,9 @@ var delay_counter = 0.0
 var idle_delay = 3.0
 var idle_counter = 0.0
 
+# TODO UPDATE ME 
+@export var currentResolution : Vector2 = Vector2(320, 200)
+
 func _ready():
 	if(p2):
 		p2.myLeader = self as CharacterBody3D;
@@ -37,6 +44,12 @@ func _ready():
 		p3.myLeader = p2 as CharacterBody3D;
 	if(p4):
 		p4.myLeader = p3 as CharacterBody3D;
+		
+	# set the scale of the screen display 
+	var screenX = DisplayServer.window_get_size()[0]
+	var screenY = DisplayServer.window_get_size()[1]
+	
+	myScreen.set_size(Vector2(screenX, screenY))
 	#menuWindow.hide();
 	
 func _physics_process(delta):
@@ -139,7 +152,14 @@ func _physics_process(delta):
 				menuWindow.myArrow.show();
 				velocity.x = 0
 				velocity.z = 0
+				
+		if Input.is_key_pressed(KEY_C):
+			Monastery.control_mode = Monastery.ControlModes.LOADINGBATTLE
+			var _trans = myTransition.instantiate()
+			add_child(_trans)
+			_trans.set_visible(true)
 		
+			
 		# END: normal control mode 
 	
 	## control mode menu:

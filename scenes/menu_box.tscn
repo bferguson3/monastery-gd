@@ -75,7 +75,6 @@ theme = SubResource("Theme_5o7j5")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.47451, 0.47451, 0.47451, 1)
 theme_override_constants/outline_size = 1
-theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "asdf"
 

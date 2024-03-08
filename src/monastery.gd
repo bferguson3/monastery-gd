@@ -13,6 +13,7 @@ enum LEG_EQUIP { NONE, STRAW_SANDAL};
 enum SCROLL_EQUIP { NONE, MASTER_SCROLL }
 enum MenuTypes { NONE, IDLE_STATUS, BASE_MENU, SUB_MENU, ERROR_WINDOW }
 
+var shader_delta_a;
 
 enum EQUIP_HEADINGS { 
 	NAME,DESCRIPTION,
@@ -105,11 +106,27 @@ func get_scroll_equipment(index):
 	return scroll_equipment[index]
 
 var rng;
-enum ControlModes { NORMAL, WAITING_SCRIPT, ACCEPT_SCRIPT, MENU_BASE, SHOW_FATAL_ERROR }
+enum ControlModes { 
+	NORMAL, 
+	WAITING_SCRIPT, 
+	ACCEPT_SCRIPT, 
+	MENU_BASE, 
+	SHOW_FATAL_ERROR,
+	LOADINGBATTLE }
+	
 var control_mode
 var activeNPC : Node3D = null;
 @export var callbackColumnNo = 3; # TODO VERIFY
-enum ItemEnums { NAME,DESCRIPTION,COST,CALLBACK,STACKABLE };
+
+enum ItemEnums { 
+	NAME,
+	DESCRIPTION,
+	COST,
+	CALLBACK,
+	STACKABLE };
+
+#@onready var myTransition = preload("res://scenes/effect_layer.tscn")
+@onready var heroCollider = get_node("/root/test scene/HeroController/HeroCollider")
 
 # TODO make this dynamic like item_callbacks.gd!
 enum Items { 
@@ -135,6 +152,7 @@ func _ready():
 	process_scene_script(current_scene_script)
 	#print_debug(current_scene_script)
 	
+	shader_delta_a = 0.0;
 	control_mode = ControlModes.NORMAL
 
 func process_scene_script(scr):
@@ -156,3 +174,14 @@ func load_csv_dat(path, arr):
 		nextline = f.get_csv_line()
 		arr.push_back(nextline)
 	f.close()
+
+func _process(delta):
+	# here we want to update shader variables and the like. 
+	if(control_mode == ControlModes.LOADINGBATTLE):
+		pass
+		# show transition and fade to black
+		#_trans.set_visible(true) 
+		#heroCollider.add_child(_trans)
+		#_trans.material.set_shader_parameter("amount", 30.0)
+		
+	pass

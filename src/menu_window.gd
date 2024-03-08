@@ -30,6 +30,8 @@ var rowLens = []
 var root;
 var idle_ctr : float = 0
 const idle_time : float = 2.0
+
+@export 
 var resolution_scale : float = 0.25; # TODO FIXME
 
 var myType = Monastery.MenuTypes.NONE
@@ -47,6 +49,7 @@ func _ready():
 	#var tc = get_node("TextContainer")
 	#originPos = tc.get_position()
 	#print_debug(originPos)
+	reset_sel()
 	
 func link_function(i: int, f:Callable):
 	myFunctions[i] = f;
@@ -187,5 +190,5 @@ func menu_select():
 
 func reset_sel():
 	selectorIndex = 0
-	myArrow.position.x = (my_txt_size/2) * resolution_scale;
-	myArrow.position.y = (my_txt_size/2) * resolution_scale;
+	myArrow.position.x = (my_txt_size/2) * resolution_scale - 1;
+	myArrow.position.y = (my_txt_size/2) * resolution_scale - 1;

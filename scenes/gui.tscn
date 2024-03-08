@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bqnurnr6bwxjc"]
+[gd_scene load_steps=12 format=3 uid="uid://bqnurnr6bwxjc"]
 
 [ext_resource type="FontFile" uid="uid://b0d5k3k4xpo3r" path="res://Ac437_IBM_Model3x_Alt1.ttf" id="1_5pfap"]
 [ext_resource type="Script" path="res://src/gui_controller.gd" id="1_6rood"]
+[ext_resource type="FontFile" uid="uid://dxd0blv0smw55" path="res://src/ac437.ttf" id="3_auhrw"]
 [ext_resource type="PackedScene" uid="uid://vwry8ixvg1dd" path="res://scenes/menu_box.tscn" id="3_cedxm"]
 
 [sub_resource type="Theme" id="Theme_txbtm"]
@@ -29,11 +30,11 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 anti_aliasing = false
 
-[sub_resource type="Theme" id="Theme_ro652"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nvehh"]
 bg_color = Color(0.69804, 0.558867, 0.580144, 0)
 skew = Vector2(2.08165e-12, 2.08165e-12)
+
+[sub_resource type="Theme" id="Theme_ro652"]
 
 [sub_resource type="Theme" id="Theme_5o7j5"]
 
@@ -76,23 +77,21 @@ offset_left = 18.0
 offset_top = 148.0
 offset_right = 412.0
 offset_bottom = 224.0
-theme = SubResource("Theme_ro652")
 theme_override_styles/panel = SubResource("StyleBoxFlat_nvehh")
 
 [node name="DialogueText" type="RichTextLabel" parent="DialogueBox/TextContainer"]
-texture_filter = 6
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 0
-theme_override_fonts/normal_font = ExtResource("1_5pfap")
-theme_override_font_sizes/normal_font_size = 22
+theme_override_fonts/normal_font = ExtResource("3_auhrw")
 text = "Bent: This is a test of the Godot GUI system.
 Line two
 Line three
 Line four! Here we go."
 
 [node name="CombatGroup" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 426.0
 offset_bottom = 239.0
@@ -136,12 +135,11 @@ layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.47451, 0.47451, 0.47451, 1)
 theme_override_constants/outline_size = 1
-theme_override_fonts/normal_font = ExtResource("1_5pfap")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_fonts/normal_font = ExtResource("3_auhrw")
 text = "Slimey Gooper slimes nearby!
 The entire party takes 132 damage!!
  
-                        ▼"
+                                ▼"
 
 [node name="PartyStatusBox" type="Control" parent="CombatGroup"]
 anchors_preset = 0
@@ -182,7 +180,6 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.47451, 0.47451, 0.47451, 1)
 theme_override_constants/outline_size = 1
 theme_override_fonts/normal_font = ExtResource("1_5pfap")
-theme_override_font_sizes/normal_font_size = 16
 text = "John   ♥ 89/ 92    Jacob  ♥ 89/ 92  
 Minty  ♥ 89/ 92    Roux   ♥ 89/ 92 "
 
