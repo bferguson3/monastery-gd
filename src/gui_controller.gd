@@ -8,6 +8,8 @@ var ew : MenuWindow
 
 @export var resolution_scale : Vector2 = Vector2(12,12)# = 3; # 1 for 320, 12 for 720p, 18 for 1080p
 
+@onready var myCombatGUI = get_node("CombatGroup")
+
 const body_icon = '♥'
 const struct_icon = '⌂'
 const breath_icon = '≈'
@@ -24,7 +26,7 @@ func _ready():
 	menu.xPosition = 0.01
 	menu.yPosition = 0.01 
 	menu.columns = 2;
-	menu.setup([" Items", "Skills ", " Stats", "Scrolls ", " Equip", "Party", " Map  ", "System"])
+	menu.setup([" Items", "Skills ", " Stats", "Scrolls ", " Equip", "Party", "  Map", " System"])
 	
 	menu.link_function(0, _ITEMS);
 	#menu.myFunctions[0].call();
@@ -65,3 +67,6 @@ func show_error_window(txt:Array):
 
 	return ew;
 	
+func enable_battle_gui():
+	myCombatGUI.set_visible(true)
+	pass

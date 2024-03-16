@@ -109,7 +109,7 @@ func setup(ilist:Array):
 		totallen += _l	
 		
 	# use that length to determine the width of the box 
-	var text_width = fontSize * totallen * 0.7;
+	var text_width = fontSize * totallen * 0.75;
 	if (myType == Monastery.MenuTypes.ERROR_WINDOW):
 		text_width /= rows;
 	var tc = get_node("TextContainer")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dymdvvhcxe8xr"]
+[gd_scene load_steps=20 format=3 uid="uid://dymdvvhcxe8xr"]
 
 [ext_resource type="PackedScene" uid="uid://boa0u3fu56gcx" path="res://scenes/hero_controller.tscn" id="1_ten8w"]
 [ext_resource type="Texture2D" uid="uid://bssjoyltu5g8s" path="res://grass_tex.png" id="3_nwj2u"]
@@ -7,12 +7,19 @@
 [ext_resource type="PackedScene" uid="uid://bdip7urohkkwc" path="res://scenes/party_sprite.tscn" id="5_usmuh"]
 [ext_resource type="Script" path="res://src/GameManager.gd" id="6_na5ge"]
 [ext_resource type="PackedScene" uid="uid://vcnv17rov42" path="res://scenes/npc.tscn" id="7_8o7de"]
-[ext_resource type="Texture2D" uid="uid://dseyk0rqkbdlk" path="res://enemy_sprites/Screenshot 2024-02-28 at 11.38.36 AM.png" id="8_b4t21"]
-[ext_resource type="Texture2D" uid="uid://bvnp022jdwsok" path="res://enemy_sprites/fire_monkey2.png" id="9_areor"]
-[ext_resource type="Texture2D" uid="uid://3d2g1b2iouv" path="res://enemy_sprites/arab_hench2.png" id="10_gwtxy"]
-[ext_resource type="Texture2D" uid="uid://dpsp0xo4fk1c4" path="res://enemy_sprites/cheongsam_staff2.png" id="11_lcau3"]
-[ext_resource type="Texture2D" uid="uid://ia45itrblyv4" path="res://enemy_sprites/mushroom_spear.png" id="12_7ylmp"]
 [ext_resource type="Texture2D" uid="uid://d1dnms6q63hnq" path="res://world_sprites/tree01.png" id="13_3b8uk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pq20l"]
+size = Vector3(1.25, 1, 1.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_je7wo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_27tct"]
+margin = 0.0
+size = Vector3(0.5, 0.2, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mll3b"]
+size = Vector3(0.5, 0.2, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t1owk"]
 size = Vector3(10, 0.2, 10)
@@ -35,17 +42,23 @@ shader_parameter/alpha_scissor = 1.0
 material = SubResource("ShaderMaterial_3x583")
 size = Vector3(10, 0.2, 10)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_pq20l"]
-size = Vector3(1.25, 1, 1.25)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jlnki"]
+sky_top_color = Color(0.286275, 0.431373, 0.760784, 1)
+sky_horizon_color = Color(0.894118, 0.552941, 0.447059, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_je7wo"]
+[sub_resource type="Sky" id="Sky_viei1"]
+sky_material = SubResource("ProceduralSkyMaterial_jlnki")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_27tct"]
-margin = 0.0
-size = Vector3(0.5, 0.2, 0.5)
-
-[sub_resource type="BoxMesh" id="BoxMesh_mll3b"]
-size = Vector3(0.5, 0.2, 0.5)
+[sub_resource type="Environment" id="Environment_8w16u"]
+background_mode = 2
+sky = SubResource("Sky_viei1")
+ambient_light_sky_contribution = 0.5
+fog_enabled = true
+fog_light_color = Color(0.203922, 0.627451, 0.568627, 1)
+fog_light_energy = 1.24
+fog_density = 0.2886
+fog_aerial_perspective = 0.833
+volumetric_fog_density = 0.0
 
 [node name="test scene" type="Node3D"]
 
@@ -60,8 +73,6 @@ size = Vector3(0.5, 0.2, 0.5)
 [node name="GameManager" type="Node3D" parent="."]
 script = ExtResource("6_na5ge")
 
-[node name="GUI" parent="." instance=ExtResource("4_5o3bb")]
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.783455, 0.38095, 0.490994, -0.621449, 0.480261, 0.618992, 0, -0.79008, 0.613004, 0, 1.9536, 2.6914)
 light_color = Color(1, 1, 0.780392, 1)
@@ -70,16 +81,6 @@ light_indirect_energy = 0.5
 light_bake_mode = 1
 shadow_enabled = true
 directional_shadow_mode = 0
-
-[node name="grasstest" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.06485, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="grasstest"]
-shape = SubResource("BoxShape3D_t1owk")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="grasstest/CollisionShape3D"]
-material_override = SubResource("StandardMaterial3D_7a2nv")
-mesh = SubResource("BoxMesh_1qdl6")
 
 [node name="cubeA" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0541, -1.57907, -2.47946)
@@ -101,95 +102,115 @@ shape = SubResource("BoxShape3D_27tct")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="cubeB/CollisionShape3D"]
 mesh = SubResource("BoxMesh_mll3b")
 
+[node name="grasstest" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.06485, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="grasstest"]
+shape = SubResource("BoxShape3D_t1owk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="grasstest/CollisionShape3D"]
+material_override = SubResource("StandardMaterial3D_7a2nv")
+mesh = SubResource("BoxMesh_1qdl6")
+
 [node name="NPC001" parent="." instance=ExtResource("7_8o7de")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.619203, -1.91274, -0.348732)
+pscale = 5.0
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.746842, 0, 0, 0, 0.739676, 0, 0, 0, 0.466753, 0.222854, -1.40689, -0.194778)
-visible = false
-billboard = 1
-texture_filter = 0
-texture = ExtResource("8_b4t21")
+[node name="battlescene_A" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.8353, 0)
 
-[node name="Sprite3D2" type="Sprite3D" parent="."]
-transform = Transform3D(0.732642, 0, 0, 0, 0.607607, 0, 0, 0, 0.609455, 0.575522, -1.58317, 0)
-visible = false
-billboard = 1
-texture_filter = 0
-texture = ExtResource("9_areor")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="battlescene_A"]
+shape = SubResource("BoxShape3D_t1owk")
 
-[node name="Sprite3D3" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15662, -1.52302, 0.000251532)
-visible = false
-billboard = 1
-texture_filter = 0
-texture = ExtResource("10_gwtxy")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="battlescene_A/CollisionShape3D"]
+material_override = SubResource("StandardMaterial3D_7a2nv")
+mesh = SubResource("BoxMesh_1qdl6")
 
-[node name="Sprite3D4" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.365463, -1.5606, 0)
-visible = false
-billboard = 1
-texture_filter = 0
-texture = ExtResource("11_lcau3")
-
-[node name="Sprite3D5" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.462106, -1.75129, -0.00221777)
-visible = false
-billboard = 1
-texture_filter = 0
-texture = ExtResource("12_7ylmp")
-
-[node name="Sprite3D12" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00899538, -1.75035, -0.00221777)
-visible = false
-billboard = 1
-texture_filter = 0
-texture = ExtResource("12_7ylmp")
-
-[node name="Sprite3D13" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.452485, -1.74858, -0.00221777)
-visible = false
-billboard = 1
-texture_filter = 0
-texture = ExtResource("12_7ylmp")
-
-[node name="Sprite3D6" type="Sprite3D" parent="."]
-transform = Transform3D(1.33612, 0, 0, 0, 1.27319, 0, 0, 0, 1.01591, 1.20242, -1.7136, -1.22877)
-visible = false
+[node name="Tree12" type="Sprite3D" parent="battlescene_A"]
+transform = Transform3D(1.33612, 0, 0, 0, 1.45707, 0, 0, 0, 1.01591, 1.20242, 0.396593, -1.22877)
 billboard = 1
 texture_filter = 0
 texture = ExtResource("13_3b8uk")
 
-[node name="Sprite3D8" type="Sprite3D" parent="."]
-transform = Transform3D(1.33612, 0, 0, 0, 1.12943, 0, 0, 0, 1.00865, -1.61243, -1.7136, -0.926215)
-visible = false
+[node name="Tree13" type="Sprite3D" parent="battlescene_A"]
+transform = Transform3D(1.33612, 0, 0, 0, 1.29254, 0, 0, 0, 1.00865, -1.61243, 0.396593, -0.926215)
 billboard = 1
 texture_filter = 0
 texture = ExtResource("13_3b8uk")
 
-[node name="Sprite3D7" type="Sprite3D" parent="."]
-transform = Transform3D(1.33612, 0, 0, 0, 1.12943, 0, 0, 0, 1.00865, -1.0838, -1.7136, -1.91689)
-visible = false
+[node name="Tree20" type="Sprite3D" parent="battlescene_A"]
+transform = Transform3D(1.33612, 0, 0, 0, 1.29254, 0, 0, 0, 1.00865, -1.0838, 0.396593, -1.91689)
 billboard = 1
 texture_filter = 0
 texture = ExtResource("13_3b8uk")
 
-[node name="Sprite3D9" type="Sprite3D" parent="."]
-transform = Transform3D(1.86442, 0, 0, 0, 1.6893, 0, 0, 0, 1.00865, -1.56522, -1.63482, -0.172815)
-visible = false
+[node name="Tree21" type="Sprite3D" parent="battlescene_A"]
+transform = Transform3D(1.86442, 0, 0, 0, 1.93327, 0, 0, 0, 1.00865, -1.56522, 0.486751, -0.172815)
 billboard = 1
 texture_filter = 0
 texture = ExtResource("13_3b8uk")
 
-[node name="Sprite3D11" type="Sprite3D" parent="."]
-transform = Transform3D(1.86442, 0, 0, 0, 1.6893, 0, 0, 0, 1.00865, 1.97692, -1.61182, -0.383607)
-visible = false
+[node name="Tree22" type="Sprite3D" parent="battlescene_A"]
+transform = Transform3D(1.86442, 0, 0, 0, 1.93327, 0, 0, 0, 1.00865, 1.97692, 0.513072, -0.383607)
 billboard = 1
 texture_filter = 0
 texture = ExtResource("13_3b8uk")
 
-[node name="Sprite3D10" type="Sprite3D" parent="."]
-transform = Transform3D(1.51499, 0, 0, 0, 1.74967, 0, 0, 0, 1.00865, 0.343988, -1.61953, -0.85848)
-visible = false
+[node name="Tree23" type="Sprite3D" parent="battlescene_A"]
+transform = Transform3D(1.51499, 0, 0, 0, 2.00236, 0, 0, 0, 1.00865, 0.343988, 0.504249, -0.85848)
 billboard = 1
 texture_filter = 0
 texture = ExtResource("13_3b8uk")
+
+[node name="Tree24" type="Sprite3D" parent="battlescene_A"]
+transform = Transform3D(1.22103, 0, 0, 0, 1.23539, 0, 0, 0, 1.01591, 0.452186, 0.404562, -1.66713)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("13_3b8uk")
+
+[node name="Tree25" type="Sprite3D" parent="battlescene_A"]
+transform = Transform3D(1.22103, 0, 0, 0, 1.0959, 0, 0, 0, 1.00865, -2.1202, 0.404562, -1.36457)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("13_3b8uk")
+
+[node name="Tree26" type="Sprite3D" parent="battlescene_A"]
+transform = Transform3D(1.22103, 0, 0, 0, 1.0959, 0, 0, 0, 1.00865, -1.63711, 0.404562, -2.35525)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("13_3b8uk")
+
+[node name="Tree27" type="Sprite3D" parent="battlescene_A"]
+transform = Transform3D(1.70383, 0, 0, 0, 1.63914, 0, 0, 0, 1.00865, -2.07706, 0.481003, -0.611172)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("13_3b8uk")
+
+[node name="Tree28" type="Sprite3D" parent="battlescene_A"]
+transform = Transform3D(1.70383, 0, 0, 0, 1.63914, 0, 0, 0, 1.00865, 1.15997, 0.50332, -0.821964)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("13_3b8uk")
+
+[node name="Tree29" type="Sprite3D" parent="battlescene_A"]
+transform = Transform3D(1.38449, 0, 0, 0, 1.69772, 0, 0, 0, 1.00865, -0.332304, 0.49584, -1.29684)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("13_3b8uk")
+
+[node name="BattleViewContainer" type="SubViewportContainer" parent="."]
+visible = false
+offset_right = 1920.0
+offset_bottom = 1080.0
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="BattleViewContainer"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 0
+
+[node name="BattleCamera" type="Camera3D" parent="BattleViewContainer/SubViewport"]
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 2.64723e-16, 0.976137, 0.217155, -4.16205e-16, -0.217155, 0.976137, 0.155801, -11.5797, 1)
+environment = SubResource("Environment_8w16u")
+
+[node name="GUI" parent="." instance=ExtResource("4_5o3bb")]

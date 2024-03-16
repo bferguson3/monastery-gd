@@ -14,9 +14,9 @@ void fragment()
 	
 	vec4 text = texture(screen_texture, grid_uv);
 	
-	text.r -= (TIME/10.0);
-	text.g -= (TIME/10.0);
-	text.b -= (TIME/10.0);
+	text.r *= (amt / 128.0);
+	text.g *= (amt / 128.0);
+	text.b *= (amt / 128.0);
 	
 	if(darken){
 		text = vec4(0.0, 0.0, 0.0, 1.0);

@@ -16,7 +16,7 @@ const JUMP_VELOCITY = 3.5;
 @onready var GUI = get_node("../GUI")
 
 @onready var myScreen = get_node("HeroCollider/SVC")
-@onready var myBattleScreen = get_node("HeroCollider/BattleViewContainer")
+@onready var myBattleScreen = get_node("../BattleViewContainer")
 @onready var myTransition = preload("res://scenes/effect_layer.tscn")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -156,8 +156,17 @@ func _physics_process(delta):
 		if Input.is_key_pressed(KEY_C):
 			Monastery.control_mode = Monastery.ControlModes.LOADINGBATTLE
 			var _trans = myTransition.instantiate()
-			add_child(_trans)
+			get_parent().add_child(_trans)
+			_trans.enabled = true
 			_trans.set_visible(true)
+			# wait 1 second then load battle 
+			await get_tree().create_timer(0.75).timeout
+			# LOAD BATTLE CODE 
+			# enable battle camera - cam is positioned beneath world
+			myBattleScreen.set_visible(true)
+			_trans.set_fade_in()
+			await get_tree().create_timer(0.75).timeout
+			GUI.enable_battle_gui()
 		
 			
 		# END: normal control mode 

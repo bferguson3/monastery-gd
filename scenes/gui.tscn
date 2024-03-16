@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bqnurnr6bwxjc"]
+[gd_scene load_steps=11 format=3 uid="uid://bqnurnr6bwxjc"]
 
-[ext_resource type="FontFile" uid="uid://b0d5k3k4xpo3r" path="res://Ac437_IBM_Model3x_Alt1.ttf" id="1_5pfap"]
 [ext_resource type="Script" path="res://src/gui_controller.gd" id="1_6rood"]
-[ext_resource type="FontFile" uid="uid://dxd0blv0smw55" path="res://src/ac437.ttf" id="3_auhrw"]
+[ext_resource type="FontFile" uid="uid://mvt8wt3fa4b8" path="res://Web437_IBM_Model3x_Alt4.woff" id="2_dbngg"]
 [ext_resource type="PackedScene" uid="uid://vwry8ixvg1dd" path="res://scenes/menu_box.tscn" id="3_cedxm"]
 
 [sub_resource type="Theme" id="Theme_txbtm"]
@@ -49,8 +48,8 @@ script = ExtResource("1_6rood")
 [node name="DialogueBox" type="Control" parent="."]
 visible = false
 anchors_preset = 0
-offset_right = 34.0
-offset_bottom = 33.0
+offset_right = 107.0
+offset_bottom = 84.0
 scale = Vector2(0.25, 0.25)
 
 [node name="PanelBG" type="PanelContainer" parent="DialogueBox"]
@@ -84,7 +83,8 @@ layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 0
-theme_override_fonts/normal_font = ExtResource("3_auhrw")
+theme_override_fonts/normal_font = ExtResource("2_dbngg")
+theme_override_font_sizes/normal_font_size = 16
 text = "Bent: This is a test of the Godot GUI system.
 Line two
 Line three
@@ -135,11 +135,12 @@ layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.47451, 0.47451, 0.47451, 1)
 theme_override_constants/outline_size = 1
-theme_override_fonts/normal_font = ExtResource("3_auhrw")
-text = "Slimey Gooper slimes nearby!
-The entire party takes 132 damage!!
+theme_override_fonts/normal_font = ExtResource("2_dbngg")
+theme_override_font_sizes/normal_font_size = 16
+text = " 
  
-                                ▼"
+ 
+                        ▼"
 
 [node name="PartyStatusBox" type="Control" parent="CombatGroup"]
 anchors_preset = 0
@@ -150,7 +151,7 @@ offset_bottom = 241.0
 layout_mode = 0
 offset_left = 10.0
 offset_top = 1.0
-offset_right = 254.0
+offset_right = 299.0
 offset_bottom = 44.0
 theme = SubResource("Theme_txbtm")
 theme_override_styles/panel = SubResource("StyleBoxFlat_288sf")
@@ -158,8 +159,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_288sf")
 [node name="PanelBorder" type="Panel" parent="CombatGroup/PartyStatusBox"]
 layout_mode = 0
 offset_left = 9.0
-offset_top = 2.0
-offset_right = 254.0
+offset_top = 1.0
+offset_right = 299.0
 offset_bottom = 43.0
 theme = SubResource("Theme_7ivfm")
 theme_override_styles/panel = SubResource("StyleBoxFlat_p72l8")
@@ -179,7 +180,8 @@ theme = SubResource("Theme_5o7j5")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.47451, 0.47451, 0.47451, 1)
 theme_override_constants/outline_size = 1
-theme_override_fonts/normal_font = ExtResource("1_5pfap")
+theme_override_fonts/normal_font = ExtResource("2_dbngg")
+theme_override_font_sizes/normal_font_size = 16
 text = "John   ♥ 89/ 92    Jacob  ♥ 89/ 92  
 Minty  ♥ 89/ 92    Roux   ♥ 89/ 92 "
 
@@ -224,7 +226,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.47451, 0.47451, 0.47451, 1)
 theme_override_constants/line_separation = -2
 theme_override_constants/outline_size = 1
-theme_override_fonts/normal_font = ExtResource("1_5pfap")
+theme_override_fonts/normal_font = ExtResource("2_dbngg")
 theme_override_font_sizes/normal_font_size = 16
 text = " Ben
 ♥  89/ 92
@@ -273,7 +275,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.47451, 0.47451, 0.47451, 1)
 theme_override_constants/line_separation = -2
 theme_override_constants/outline_size = 1
-theme_override_fonts/normal_font = ExtResource("1_5pfap")
+theme_override_fonts/normal_font = ExtResource("2_dbngg")
 theme_override_font_sizes/normal_font_size = 16
 text = " Ben
 ♥  89/ 92
@@ -322,7 +324,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.47451, 0.47451, 0.47451, 1)
 theme_override_constants/line_separation = -2
 theme_override_constants/outline_size = 1
-theme_override_fonts/normal_font = ExtResource("1_5pfap")
+theme_override_fonts/normal_font = ExtResource("2_dbngg")
 theme_override_font_sizes/normal_font_size = 16
 text = " Ben
 ♥  89/ 92
@@ -371,7 +373,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0.47451, 0.47451, 0.47451, 1)
 theme_override_constants/line_separation = -2
 theme_override_constants/outline_size = 1
-theme_override_fonts/normal_font = ExtResource("1_5pfap")
+theme_override_fonts/normal_font = ExtResource("2_dbngg")
 theme_override_font_sizes/normal_font_size = 16
 text = " Ben
 ♥  89/ 92
