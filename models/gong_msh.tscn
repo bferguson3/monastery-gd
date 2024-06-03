@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://currlctrmnm2l"]
+
+[ext_resource type="PackedScene" uid="uid://bjq7wult0c8cn" path="res://models/gong_msh.glb" id="1_lyqss"]
+[ext_resource type="Texture2D" uid="uid://b531ttynsppet" path="res://models/gong_alb.png" id="2_6m515"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4g5hi"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2hpfo"]
+noise = SubResource("FastNoiseLite_4g5hi")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r8ur3"]
+albedo_texture = ExtResource("2_6m515")
+metallic = 1.0
+metallic_texture = SubResource("NoiseTexture2D_2hpfo")
+emission_enabled = true
+texture_filter = 0
+
+[node name="gong_msh" instance=ExtResource("1_lyqss")]
+
+[node name="GongMesh" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_r8ur3")

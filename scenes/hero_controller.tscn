@@ -257,7 +257,6 @@ ambient_light_sky_contribution = 0.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.92623, 0)
 script = ExtResource("1_twxjk")
 SPEED = 3.0
-camera_distance = 0.6
 
 [node name="HeroSprite" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.0134923, 2.08165e-12)
@@ -283,7 +282,7 @@ size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
 [node name="MainCamera" type="Camera3D" parent="HeroCollider/SVC/SubViewport"]
-transform = Transform3D(1, -6.79356e-16, 1.11248e-16, 1.11249e-16, 0.318959, 0.947769, -6.79356e-16, -0.947769, 0.318959, 2.08165e-12, -0.92623, 1.08808)
+transform = Transform3D(1, -6.79356e-16, 1.11248e-16, -9.32842e-17, 0.0263859, 0.999652, -6.82055e-16, -0.999652, 0.0263859, 2.08165e-12, -1.75241, 0.81785)
 environment = SubResource("Environment_q804y")
 current = true
 

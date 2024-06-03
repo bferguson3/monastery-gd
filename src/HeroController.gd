@@ -19,12 +19,15 @@ const JUMP_VELOCITY = 3.5;
 @onready var myBattleScreen = get_node("../BattleViewContainer")
 @onready var myTransition = preload("res://scenes/effect_layer.tscn")
 
+@export var movedThisFrame : bool = false;
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity");
 
 var rotation_around_point = 90;
 @export var camera_distance = 0.75;
 var camera_changed = true;
+@export var cameraHeight = 3.0;
 
 var stopped = false
 
@@ -53,6 +56,7 @@ func _ready():
 	#menuWindow.hide();
 	
 func _physics_process(delta):
+	movedThisFrame = false;
 	
 	if (Monastery.control_mode == Monastery.ControlModes.NORMAL) and stopped:
 		stopped = false
@@ -87,7 +91,7 @@ func _physics_process(delta):
 			rotation_around_point += 0.02;
 			camera_changed = true;
 		if camera_changed:
-			myCam.global_transform.origin = rotation_point + Vector3(cos(rotation_around_point), 2.0, sin(rotation_around_point))*camera_distance;
+			myCam.global_transform.origin = rotation_point + Vector3(cos(rotation_around_point), cameraHeight, sin(rotation_around_point))*camera_distance;
 			myCam.look_at(mySprite.global_transform.origin);
 			camera_changed = false;
 			
@@ -111,6 +115,7 @@ func _physics_process(delta):
 		
 		if Input.is_action_pressed("ui_right"):
 			idle_counter = 0.0
+			movedThisFrame = true;
 			mySprite.play("hero2_walk_right");
 			aspd = 1.0
 			camera_changed = true
@@ -119,16 +124,19 @@ func _physics_process(delta):
 			mySprite.play("hero2_walk_left");
 			aspd = 1.0
 			camera_changed = true
+			movedThisFrame = true;
 		elif Input.is_action_pressed("ui_up"):
 			idle_counter = 0.0
 			mySprite.play("hero2_walk_up");
 			aspd = 1.0
 			camera_changed = true
+			movedThisFrame = true;
 		elif Input.is_action_pressed("ui_down"):
 			idle_counter = 0.0
 			mySprite.play("hero2_walk_down");
 			aspd = 1.0
 			camera_changed = true
+			movedThisFrame = true;
 	
 		# sprite movement 
 		var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
